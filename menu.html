@@ -1917,11 +1917,1116 @@ textarea.form-control {
   </footer>
 
   <!-- Scripts -->
-    <script src="cart.js" onerror="this.onerror=null;"></script>
-  <script src="js/cart.js" onerror="this.onerror=null;"></script>
-  <script src="main.js" onerror="this.onerror=null;"></script>
-  <script src="js/main.js" onerror="this.onerror=null;"></script>
-  <script src="menu.js" onerror="this.onerror=null;"></script>
-  <script src="js/menu.js" onerror="this.onerror=null;"></script>
+    
+  <script>
+if (window.__cart_js_loaded) { /* already loaded */ } else {
+window.__cart_js_loaded = true;
+/* ===================================================================
+   BEAN & BREW - GLOBAL CART & CHECKOUT ENGINE (cart.js)
+   Cross-page cart persistence, drawer management, and checkout
+   =================================================================== */
+
+const CART_STORAGE_KEY = 'bean_and_brew_cart';
+const PROMO_STORAGE_KEY = 'bean_and_brew_promo';
+
+const PROMO_CODES = {
+  'BREW10': { discountPercent: 10, label: '10% Off Your Order' },
+  'FIRSTSIP': { discountAmount: 5.00, label: '$5 Off Welcome Gift' },
+  'FREESHIP': { freeShipping: true, label: 'Free Shipping Unlocked' }
+};
+
+// Global Catalog Data (Accessible across pages)
+window.COFFEE_PRODUCTS = [
+  {
+    id: 'ethiopian-yirgacheffe',
+    name: 'Ethiopian Yirgacheffe G1',
+    category: 'beans',
+    price: 19.50,
+    roast: 'Light Roast',
+    notes: 'Jasmine, Bergamot, Peach Nectar',
+    origin: 'Gedeo Zone, Ethiopia (2,050m)',
+    image: 'https://images.unsplash.com/photo-1587734195503-904fca47e0e9?auto=format&fit=crop&w=700&q=80',
+    description: 'A delicately floral, tea-like washed Ethiopian bean with sparkling citrus acidity and a clean lingering honeysuckle finish.'
+  },
+  {
+    id: 'colombian-huila-reserve',
+    name: 'Colombian Huila Pink Bourbon',
+    category: 'beans',
+    price: 21.00,
+    roast: 'Medium Roast',
+    notes: 'Red Currant, Brown Sugar, Milk Chocolate',
+    origin: 'Huila, Colombia (1,800m)',
+    image: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=700&q=80',
+    description: 'Rare Pink Bourbon varietal offering high sweetness, velvety body, and sweet caramel toffee notes.'
+  },
+  {
+    id: 'sumatra-mandheling-dark',
+    name: 'Sumatra Mandheling Vintage',
+    category: 'beans',
+    price: 18.50,
+    roast: 'Dark Roast',
+    notes: 'Dark Cocoa, Cedarwood, Roasted Walnut',
+    origin: 'Lintong, Sumatra (1,500m)',
+    image: 'https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?auto=format&fit=crop&w=700&q=80',
+    description: 'Wet-hulled processing yields heavy syrupy body, earthy cedar nuances, and an ultra-low acidity chocolate richness.'
+  },
+  {
+    id: 'signature-espresso-blend',
+    name: 'Velvet Crema House Espresso',
+    category: 'beans',
+    price: 17.50,
+    roast: 'Espresso Roast',
+    notes: 'Dark Chocolate, Toasted Hazelnut, Blackberry',
+    origin: 'Brazil & Guatemala Blend',
+    image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=700&q=80',
+    description: 'Our flagship espresso formula crafted to produce dense crema, rich mouthfeel, and luscious sweetness with milk.'
+  },
+  {
+    id: 'artisan-caramel-cortado',
+    name: 'Smoked Vanilla Cortado',
+    category: 'hot-drinks',
+    price: 5.75,
+    roast: 'Beverage',
+    notes: 'Equal parts espresso & textured oat milk, Madagascar vanilla',
+    origin: 'Prepared Fresh in Café',
+    image: 'https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=700&q=80',
+    description: 'Double ristretto shot cut 1:1 with warm micro-foamed oat milk and infused with house-smoked Madagascar bourbon vanilla syrup.'
+  },
+  {
+    id: 'nitro-cold-brew',
+    name: 'Cascara Nitro Cold Brew',
+    category: 'cold-drinks',
+    price: 6.25,
+    roast: 'Cold Beverage',
+    notes: 'Guinness-like head, Dark Cherry, Malt',
+    origin: 'Steeped for 20 Hours',
+    image: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=700&q=80',
+    description: 'Slow-dripped single origin coffee infused with pure nitrogen for an ultra-velvety, creamy texture served ice-cold from tap.'
+  },
+  {
+    id: 'spanish-honey-latte',
+    name: 'Wildflower Honey Lavender Latte',
+    category: 'hot-drinks',
+    price: 6.50,
+    roast: 'Beverage',
+    notes: 'Organic Honey, French Lavender, Velvety Foam',
+    origin: 'Prepared Fresh in Café',
+    image: 'https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?auto=format&fit=crop&w=700&q=80',
+    description: 'Single-origin espresso harmonized with organic raw wildflower honey, a whisper of organic lavender, and silky steamed milk.'
+  },
+  {
+    id: 'almond-croissant',
+    name: 'Double-Baked Almond Croissant',
+    category: 'bakery',
+    price: 4.85,
+    roast: 'Fresh Bakery',
+    notes: 'Frangipane almond cream, toasted flakes',
+    origin: 'Baked In-House Daily at 5:00 AM',
+    image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=700&q=80',
+    description: 'Buttery flaky laminated French pastry soaked with vanilla rum syrup, filled with rich frangipane cream and topped with sliced toasted almonds.'
+  },
+  {
+    id: 'pourover-v60-kit',
+    name: 'Hario V60 Ceramic Brewer Set',
+    category: 'gear',
+    price: 36.00,
+    roast: 'Brewing Gear',
+    notes: 'Ceramic 02 Dripper, Glass Server, 100 Paper Filters',
+    origin: 'Tokyo, Japan',
+    image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=700&q=80',
+    description: 'The golden standard pour-over brewing kit favored by competitive baristas world-wide for pristine flavor clarity and extraction control.'
+  }
+];
+
+class CartManager {
+  constructor() {
+    this.cart = this.loadCart();
+    this.promoCode = localStorage.getItem(PROMO_STORAGE_KEY) || '';
+    this.initDOM();
+  }
+
+  loadCart() {
+    try {
+      const data = localStorage.getItem(CART_STORAGE_KEY);
+      return data ? JSON.parse(data) : [];
+    } catch (e) {
+      console.error('Error loading cart:', e);
+      return [];
+    }
+  }
+
+  saveCart() {
+    try {
+      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(this.cart));
+      if (this.promoCode) {
+        localStorage.setItem(PROMO_STORAGE_KEY, this.promoCode);
+      } else {
+        localStorage.removeItem(PROMO_STORAGE_KEY);
+      }
+      this.updateBadges();
+      this.renderDrawer();
+    } catch (e) {
+      console.error('Error saving cart:', e);
+    }
+  }
+
+  addItem(productId, grind = 'Whole Bean', quantity = 1) {
+    const product = window.COFFEE_PRODUCTS.find(p => p.id === productId);
+    if (!product) return;
+
+    const cartItemId = `${productId}-${grind}`;
+    const existingIndex = this.cart.findIndex(item => item.cartItemId === cartItemId);
+
+    if (existingIndex > -1) {
+      this.cart[existingIndex].quantity += quantity;
+    } else {
+      this.cart.push({
+        cartItemId,
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        category: product.category,
+        grind: product.category === 'beans' ? grind : null,
+        quantity: quantity
+      });
+    }
+
+    this.saveCart();
+    this.showToast(`Added "${product.name}" to cart!`);
+    this.openDrawer();
+  }
+
+  updateQuantity(cartItemId, delta) {
+    const index = this.cart.findIndex(i => i.cartItemId === cartItemId);
+    if (index === -1) return;
+
+    this.cart[index].quantity += delta;
+    if (this.cart[index].quantity <= 0) {
+      this.cart.splice(index, 1);
+      this.showToast('Item removed from cart.');
+    }
+    this.saveCart();
+  }
+
+  removeItem(cartItemId) {
+    this.cart = this.cart.filter(i => i.cartItemId !== cartItemId);
+    this.saveCart();
+    this.showToast('Item removed from cart.');
+  }
+
+  clearCart() {
+    this.cart = [];
+    this.promoCode = '';
+    this.saveCart();
+  }
+
+  applyPromo(code) {
+    const cleanCode = (code || '').trim().toUpperCase();
+    if (PROMO_CODES[cleanCode]) {
+      this.promoCode = cleanCode;
+      this.saveCart();
+      this.showToast(`Promo "${cleanCode}" applied! ${PROMO_CODES[cleanCode].label}`, 'success');
+      return true;
+    } else {
+      this.showToast('Invalid promo code. Try "BREW10"', 'error');
+      return false;
+    }
+  }
+
+  removePromo() {
+    this.promoCode = '';
+    this.saveCart();
+    this.showToast('Promo code removed.');
+  }
+
+  calculateTotals() {
+    const subtotal = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    let discount = 0;
+    let shipping = subtotal > 0 ? (subtotal >= 40 ? 0 : 4.99) : 0;
+
+    if (this.promoCode && PROMO_CODES[this.promoCode]) {
+      const promo = PROMO_CODES[this.promoCode];
+      if (promo.discountPercent) {
+        discount = subtotal * (promo.discountPercent / 100);
+      } else if (promo.discountAmount) {
+        discount = Math.min(subtotal, promo.discountAmount);
+      }
+      if (promo.freeShipping) {
+        shipping = 0;
+      }
+    }
+
+    const discountedSubtotal = Math.max(0, subtotal - discount);
+    const tax = discountedSubtotal * 0.05; // 5% artisanal beverage tax
+    const total = discountedSubtotal + tax + shipping;
+
+    return {
+      subtotal,
+      discount,
+      shipping,
+      tax,
+      total,
+      itemCount: this.cart.reduce((count, item) => count + item.quantity, 0)
+    };
+  }
+
+  updateBadges() {
+    const totals = this.calculateTotals();
+    const badges = document.querySelectorAll('.cart-badge');
+    badges.forEach(badge => {
+      badge.textContent = totals.itemCount;
+      badge.style.display = totals.itemCount > 0 ? 'flex' : 'none';
+    });
+  }
+
+  initDOM() {
+    // Inject Drawer Markup if not present
+    if (!document.getElementById('cartDrawerOverlay')) {
+      const drawerHTML = `
+        <div class="cart-drawer-overlay" id="cartDrawerOverlay"></div>
+        <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping Cart">
+          <div class="cart-drawer-header">
+            <h3>Your Roastery Basket</h3>
+            <button class="close-btn" id="closeCartBtn" aria-label="Close cart">&times;</button>
+          </div>
+          <div class="cart-items-list" id="cartItemsList">
+            <!-- Rendered dynamically -->
+          </div>
+          <div class="cart-drawer-footer" id="cartDrawerFooter">
+            <!-- Rendered dynamically -->
+          </div>
+        </aside>
+
+        <!-- Checkout Modal -->
+        <div class="modal-overlay" id="checkoutModalOverlay">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3>Secure Checkout & Tasting Delivery</h3>
+              <button class="close-btn" id="closeCheckoutBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+              <form id="checkoutForm">
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label class="form-label" for="custName">Full Name *</label>
+                    <input type="text" id="custName" class="form-control" placeholder="Eleanor Vance" required />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="custEmail">Email Address *</label>
+                    <input type="email" id="custEmail" class="form-control" placeholder="eleanor@example.com" required />
+                  </div>
+                  <div class="form-group form-full">
+                    <label class="form-label" for="custAddress">Delivery Address *</label>
+                    <input type="text" id="custAddress" class="form-control" placeholder="742 Evergreen Terrace, Suite 4B" required />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="custCity">City *</label>
+                    <input type="text" id="custCity" class="form-control" placeholder="Portland" required />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="custZip">Postal / ZIP Code *</label>
+                    <input type="text" id="custZip" class="form-control" placeholder="97201" required />
+                  </div>
+                  <div class="form-group form-full">
+                    <label class="form-label" for="orderNotes">Roasting or Barista Instructions (Optional)</label>
+                    <textarea id="orderNotes" class="form-control" placeholder="Leave at porch, call on arrival, extra oat milk, etc."></textarea>
+                  </div>
+                  <div class="form-group form-full">
+                    <label class="form-label">Payment Preference</label>
+                    <div style="display: flex; gap: 1rem; margin-top: 0.3rem;">
+                      <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.9rem; cursor:pointer;">
+                        <input type="radio" name="paymentMethod" value="card" checked /> Credit / Debit Card
+                      </label>
+                      <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.9rem; cursor:pointer;">
+                        <input type="radio" name="paymentMethod" value="applepay" /> Apple Pay / Google Pay
+                      </label>
+                      <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.9rem; cursor:pointer;">
+                        <input type="radio" name="paymentMethod" value="cod" /> Pay on Pickup / Delivery
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--c-border); display:flex; justify-content: space-between; align-items:center;">
+                  <div>
+                    <span style="font-size: 0.85rem; color: var(--c-text-muted);">Amount Payable:</span>
+                    <h3 id="checkoutModalTotal" style="color: var(--c-roast);">$0.00</h3>
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-lg">Place Artisan Order</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order Confirmation Modal -->
+        <div class="modal-overlay" id="orderConfirmOverlay">
+          <div class="modal-content" style="text-align: center; max-width: 500px;">
+            <div class="modal-body" style="padding: 2.5rem 2rem;">
+              <div style="width: 70px; height: 70px; background: var(--c-success-bg); color: var(--c-success); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 1.5rem;">
+                ✓
+              </div>
+              <h2 style="margin-bottom: 0.5rem;">Order Roasted & Confirmed!</h2>
+              <p style="color: var(--c-text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">
+                Thank you, <strong id="confirmCustomerName">Friend</strong>. Our master roasters are preparing your batch right now.
+              </p>
+              <div style="background: var(--c-cream-bg); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1.5rem; text-align: left; font-size: 0.9rem;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:0.4rem;">
+                  <span style="color: var(--c-text-muted);">Order Tracking ID:</span>
+                  <strong id="confirmOrderId" style="font-family: monospace;">BB-93821</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:0.4rem;">
+                  <span style="color: var(--c-text-muted);">Estimated Dispatch:</span>
+                  <strong>Tomorrow, 8:30 AM</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between;">
+                  <span style="color: var(--c-text-muted);">Total Paid:</span>
+                  <strong id="confirmOrderTotal" style="color: var(--c-roast);">$0.00</strong>
+                </div>
+              </div>
+              <button class="btn btn-primary" id="continueShoppingBtn" style="width: 100%;">Continue Exploring Bean & Brew</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Toast Notifications Area -->
+        <div class="toast-container" id="toastContainer"></div>
+      `;
+      document.body.insertAdjacentHTML('beforeend', drawerHTML);
+    }
+
+    this.bindEvents();
+    this.updateBadges();
+    this.renderDrawer();
+  }
+
+  bindEvents() {
+    const overlay = document.getElementById('cartDrawerOverlay');
+    const closeBtn = document.getElementById('closeCartBtn');
+    const checkoutCloseBtn = document.getElementById('closeCheckoutBtn');
+    const continueBtn = document.getElementById('continueShoppingBtn');
+    const checkoutForm = document.getElementById('checkoutForm');
+
+    if (overlay) overlay.addEventListener('click', () => this.closeDrawer());
+    if (closeBtn) closeBtn.addEventListener('click', () => this.closeDrawer());
+    if (checkoutCloseBtn) checkoutCloseBtn.addEventListener('click', () => this.closeCheckout());
+    if (continueBtn) {
+      continueBtn.addEventListener('click', () => {
+        document.getElementById('orderConfirmOverlay').classList.remove('open');
+      });
+    }
+
+    // Cart trigger buttons
+    document.querySelectorAll('.cart-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.openDrawer();
+      });
+    });
+
+    if (checkoutForm) {
+      checkoutForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        this.submitOrder(new FormData(checkoutForm));
+      });
+    }
+  }
+
+  openDrawer() {
+    const drawer = document.getElementById('cartDrawer');
+    const overlay = document.getElementById('cartDrawerOverlay');
+    if (drawer && overlay) {
+      this.renderDrawer();
+      drawer.classList.add('open');
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  closeDrawer() {
+    const drawer = document.getElementById('cartDrawer');
+    const overlay = document.getElementById('cartDrawerOverlay');
+    if (drawer && overlay) {
+      drawer.classList.remove('open');
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+
+  renderDrawer() {
+    const list = document.getElementById('cartItemsList');
+    const footer = document.getElementById('cartDrawerFooter');
+    if (!list || !footer) return;
+
+    if (this.cart.length === 0) {
+      list.innerHTML = `
+        <div class="cart-empty">
+          <div class="cart-empty-icon">☕</div>
+          <h4>Your Cup Is Empty</h4>
+          <p style="font-size: 0.9rem; margin-top: 0.4rem; color: var(--c-text-muted);">
+            Explore our ethically roasted whole beans, signature drinks, and barista gear.
+          </p>
+          <a href="menu.html" class="btn btn-outline btn-sm" style="margin-top: 1.5rem;" onclick="window.cartManager.closeDrawer()">
+            Browse Full Menu
+          </a>
+        </div>
+      `;
+      footer.innerHTML = '';
+      return;
+    }
+
+    const totals = this.calculateTotals();
+
+    list.innerHTML = this.cart.map(item => `
+      <div class="cart-item">
+        <img src="${item.image}" alt="${item.name}" class="cart-item-img" />
+        <div class="cart-item-info">
+          <h4>${item.name}</h4>
+          ${item.grind ? `<span class="tag" style="margin-bottom: 0.3rem; display:inline-block;">${item.grind}</span>` : ''}
+          <div class="item-single-price">${item.price.toFixed(2)} each</div>
+          <div class="cart-item-qty">
+            <button class="qty-btn" onclick="window.cartManager.updateQuantity('${item.cartItemId}', -1)" aria-label="Decrease quantity">-</button>
+            <span class="qty-number">${item.quantity}</span>
+            <button class="qty-btn" onclick="window.cartManager.updateQuantity('${item.cartItemId}', 1)" aria-label="Increase quantity">+</button>
+          </div>
+        </div>
+        <div style="text-align: right;">
+          <div style="font-weight: 700; color: var(--c-roast);">${(item.price * item.quantity).toFixed(2)}</div>
+          <button class="cart-item-remove" onclick="window.cartManager.removeItem('${item.cartItemId}')" title="Remove Item">&times;</button>
+        </div>
+      </div>
+    `).join('');
+
+    footer.innerHTML = `
+      <div class="promo-group">
+        <input type="text" class="promo-input" id="cartPromoInput" placeholder="Promo code (e.g. BREW10)" value="${this.promoCode}" />
+        <button class="btn btn-secondary btn-sm" id="applyPromoBtn">Apply</button>
+      </div>
+      ${this.promoCode ? `
+        <div style="display:flex; justify-content:space-between; align-items:center; background: var(--c-success-bg); color: var(--c-success); padding: 0.4rem 0.8rem; border-radius: var(--radius-sm); font-size: 0.8rem; margin-bottom: 0.8rem;">
+          <span>✓ ${PROMO_CODES[this.promoCode]?.label || 'Code Applied'}</span>
+          <button style="color: var(--c-danger); font-weight:700;" onclick="window.cartManager.removePromo()">Remove</button>
+        </div>
+      ` : ''}
+
+      <div class="cart-summary-line">
+        <span>Subtotal</span>
+        <span>${totals.subtotal.toFixed(2)}</span>
+      </div>
+      ${totals.discount > 0 ? `
+        <div class="cart-summary-line" style="color: var(--c-success);">
+          <span>Promo Discount</span>
+          <span>-${totals.discount.toFixed(2)}</span>
+        </div>
+      ` : ''}
+      <div class="cart-summary-line">
+        <span>Artisan Roastery Tax (5%)</span>
+        <span>${totals.tax.toFixed(2)}</span>
+      </div>
+      <div class="cart-summary-line">
+        <span>Eco-Packaging Delivery</span>
+        <span>${totals.shipping === 0 ? '<strong style="color: var(--c-success);">FREE</strong>' : `${totals.shipping.toFixed(2)}`}</span>
+      </div>
+
+      <div class="cart-summary-total">
+        <span>Estimated Total</span>
+        <span>${totals.total.toFixed(2)}</span>
+      </div>
+
+      <button class="btn btn-primary" id="openCheckoutBtn" style="width: 100%;">
+        Proceed to Checkout (${totals.total.toFixed(2)})
+      </button>
+    `;
+
+    // Bind footer buttons
+    const applyBtn = document.getElementById('applyPromoBtn');
+    if (applyBtn) {
+      applyBtn.addEventListener('click', () => {
+        const input = document.getElementById('cartPromoInput');
+        if (input) this.applyPromo(input.value);
+      });
+    }
+
+    const openCheckoutBtn = document.getElementById('openCheckoutBtn');
+    if (openCheckoutBtn) {
+      openCheckoutBtn.addEventListener('click', () => {
+        this.closeDrawer();
+        this.openCheckout();
+      });
+    }
+  }
+
+  openCheckout() {
+    const modal = document.getElementById('checkoutModalOverlay');
+    const totalDisplay = document.getElementById('checkoutModalTotal');
+    const totals = this.calculateTotals();
+
+    if (modal && totalDisplay) {
+      totalDisplay.textContent = `${totals.total.toFixed(2)}`;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  closeCheckout() {
+    const modal = document.getElementById('checkoutModalOverlay');
+    if (modal) {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+
+  submitOrder(formData) {
+    const name = formData.get('custName') || 'Valued Guest';
+    const totals = this.calculateTotals();
+    const orderId = 'BB-' + Math.floor(10000 + Math.random() * 90000);
+
+    // Close checkout
+    this.closeCheckout();
+
+    // Fill confirmation
+    document.getElementById('confirmCustomerName').textContent = name;
+    document.getElementById('confirmOrderId').textContent = orderId;
+    document.getElementById('confirmOrderTotal').textContent = `${totals.total.toFixed(2)}`;
+
+    // Show confirmation modal
+    const confirmModal = document.getElementById('orderConfirmOverlay');
+    if (confirmModal) {
+      confirmModal.classList.add('open');
+    }
+
+    // Reset cart
+    this.clearCart();
+    this.showToast(`Order #${orderId} placed successfully! Check your inbox for roast updates.`, 'success');
+  }
+
+  showToast(message, type = 'info') {
+    const container = document.getElementById('toastContainer');
+    if (!container) return;
+
+    const toast = document.createElement('div');
+    toast.className = `toast ${type === 'success' ? 'toast-success' : type === 'error' ? 'toast-error' : ''}`;
+    toast.innerHTML = `<span>☕</span><span>${message}</span>`;
+    container.appendChild(toast);
+
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateY(10px)';
+      toast.style.transition = 'all 0.3s ease';
+      setTimeout(() => toast.remove(), 300);
+    }, 3500);
+  }
+}
+
+// Global initialization
+document.addEventListener('DOMContentLoaded', () => {
+  window.cartManager = new CartManager();
+});
+
+}
+
+if (window.__main_js_loaded) { /* already loaded */ } else {
+window.__main_js_loaded = true;
+/* ===================================================================
+   BEAN & BREW - CORE INTERACTIVITY & UI SCRIPTS (main.js)
+   Navigation, Real-Time Café Status, Quiz Engine, Newsletter & Modals
+   =================================================================== */
+
+document.addEventListener('DOMContentLoaded', () => {
+  initNavigation();
+  initCafeLiveStatus();
+  initNewsletter();
+  initCoffeeQuiz();
+  initTastingModal();
+  initFAQ();
+});
+
+/* ================= Navigation & Mobile Menu ================= */
+function initNavigation() {
+  const header = document.querySelector('.site-header');
+  const toggle = document.querySelector('.mobile-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  // Sticky header shadow on scroll
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 30) {
+      header?.classList.add('scrolled');
+    } else {
+      header?.classList.remove('scrolled');
+    }
+  });
+
+  // Mobile menu toggle
+  if (toggle && navLinks) {
+    toggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      toggle.classList.toggle('is-active', isOpen);
+      toggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close when clicking outside or on a link
+    document.addEventListener('click', (e) => {
+      if (!toggle.contains(e.target) && !navLinks.contains(e.target) && navLinks.classList.contains('open')) {
+        navLinks.classList.remove('open');
+        toggle.classList.remove('is-active');
+      }
+    });
+  }
+
+  // Set active link according to current page path
+  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-link').forEach(link => {
+    const href = link.getAttribute('href');
+    if (href === currentPath || (currentPath === '' && href === 'index.html')) {
+      link.classList.add('active');
+    }
+  });
+}
+
+/* ================= Real-Time Café Status ================= */
+function initCafeLiveStatus() {
+  const statusContainer = document.getElementById('liveCafeStatus');
+  if (!statusContainer) return;
+
+  const now = new Date();
+  const day = now.getDay(); // 0 is Sunday, 6 is Saturday
+  const currentHour = now.getHours() + (now.getMinutes() / 60);
+
+  const isWeekend = (day === 0 || day === 6);
+  const openTime = isWeekend ? 7.5 : 6.5; // 7:30 AM or 6:30 AM
+  const closeTime = isWeekend ? 21.0 : 20.0; // 9:00 PM or 8:00 PM
+
+  const isOpen = currentHour >= openTime && currentHour < closeTime;
+
+  if (isOpen) {
+    const closeDisplay = isWeekend ? '9:00 PM' : '8:00 PM';
+    statusContainer.innerHTML = `
+      <span class="status-pill open">
+        <span class="status-dot"></span> Open Today until ${closeDisplay}
+      </span>
+    `;
+  } else {
+    const nextOpen = isWeekend ? '7:30 AM' : '6:30 AM';
+    statusContainer.innerHTML = `
+      <span class="status-pill closed">
+        <span class="status-dot"></span> Café Opens at ${nextOpen}
+      </span>
+    `;
+  }
+}
+
+/* ================= Newsletter Subscription ================= */
+function initNewsletter() {
+  const forms = document.querySelectorAll('.newsletter-form');
+  forms.forEach(form => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const input = form.querySelector('.newsletter-input');
+      const email = input?.value.trim();
+
+      if (email && email.includes('@')) {
+        if (window.cartManager) {
+          window.cartManager.showToast(`✨ Welcome to the Roaster's Circle! 10% coupon "BREW10" sent to ${email}`, 'success');
+        } else {
+          alert('Welcome! Your 10% discount code is BREW10');
+        }
+        form.reset();
+      } else {
+        if (window.cartManager) {
+          window.cartManager.showToast('Please enter a valid email address.', 'error');
+        }
+      }
+    });
+  });
+}
+
+/* ================= Interactive Coffee Taste Finder / Quiz ================= */
+const QUIZ_QUESTIONS = [
+  {
+    title: 'How do you enjoy drinking your coffee?',
+    subtitle: 'Step 1 of 3 — Preferred Profile',
+    options: [
+      { text: 'Pure & Black', icon: '☕', profile: 'clean' },
+      { text: 'With Steamed / Oat Milk', icon: '🥛', profile: 'creamy' },
+      { text: 'Over Ice & Chilled', icon: '🧊', profile: 'cold' },
+      { text: 'Sweet & Syrupy', icon: '🍯', profile: 'sweet' }
+    ]
+  },
+  {
+    title: 'Which flavor notes excite your palate the most?',
+    subtitle: 'Step 2 of 3 — Taste Dimensions',
+    options: [
+      { text: 'Jasmine, Floral & Peach Citrus', icon: '🌸', profile: 'floral' },
+      { text: 'Caramel, Hazelnut & Milk Chocolate', icon: '🍫', profile: 'choc' },
+      { text: 'Smoky Dark Cocoa & Roasted Walnut', icon: '🌰', profile: 'dark' },
+      { text: 'Wild Berry, Vanilla & Lavender', icon: '🫐', profile: 'sweet' }
+    ]
+  },
+  {
+    title: 'What is your preferred brewing apparatus?',
+    subtitle: 'Step 3 of 3 — Brewing Method',
+    options: [
+      { text: 'Pour Over (V60 / Chemex)', icon: '⏳', brew: 'pourover' },
+      { text: 'Home Espresso Machine', icon: '⚙️', brew: 'espresso' },
+      { text: 'French Press / AeroPress', icon: '🫖', brew: 'immersion' },
+      { text: 'Cold Brewer / Ready to Drink', icon: '🍹', brew: 'coldbrew' }
+    ]
+  }
+];
+
+function initCoffeeQuiz() {
+  const quizContainer = document.getElementById('coffeeQuizContainer');
+  if (!quizContainer) return;
+
+  let currentStep = 0;
+  const userAnswers = [];
+
+  function renderStep() {
+    const q = QUIZ_QUESTIONS[currentStep];
+    quizContainer.innerHTML = `
+      <div class="quiz-box">
+        <div class="text-center">
+          <span class="subheading" style="color: var(--c-crema-light);">${q.subtitle}</span>
+          <h2 style="color: var(--c-white); margin-bottom: 0.5rem;">${q.title}</h2>
+          <div class="quiz-steps-nav">
+            ${QUIZ_QUESTIONS.map((_, idx) => `
+              <div class="quiz-step-indicator ${idx === currentStep ? 'active' : ''}"></div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="quiz-options">
+          ${q.options.map((opt, i) => `
+            <button class="quiz-option-btn" data-index="${i}">
+              <span class="icon">${opt.icon}</span>
+              <span>${opt.text}</span>
+            </button>
+          `).join('')}
+        </div>
+
+        ${currentStep > 0 ? `
+          <div style="text-align: center; margin-top: 1rem;">
+            <button class="btn btn-outline-light btn-sm" id="quizPrevBtn">← Back to previous question</button>
+          </div>
+        ` : ''}
+      </div>
+    `;
+
+    // Bind option click
+    quizContainer.querySelectorAll('.quiz-option-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const idx = parseInt(btn.dataset.index, 10);
+        userAnswers[currentStep] = q.options[idx];
+
+        if (currentStep < QUIZ_QUESTIONS.length - 1) {
+          currentStep++;
+          renderStep();
+        } else {
+          renderResult();
+        }
+      });
+    });
+
+    const prevBtn = document.getElementById('quizPrevBtn');
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        if (currentStep > 0) {
+          currentStep--;
+          renderStep();
+        }
+      });
+    }
+  }
+
+  function renderResult() {
+    // Intelligent recommendation logic based on choices
+    let recProductId = 'colombian-huila-reserve';
+    const first = userAnswers[0];
+    const second = userAnswers[1];
+
+    if (second.profile === 'floral' || first.profile === 'clean') {
+      recProductId = 'ethiopian-yirgacheffe';
+    } else if (second.profile === 'dark') {
+      recProductId = 'sumatra-mandheling-dark';
+    } else if (first.profile === 'creamy' || first.profile === 'sweet') {
+      recProductId = 'signature-espresso-blend';
+    }
+
+    const rec = (window.COFFEE_PRODUCTS || []).find(p => p.id === recProductId) || window.COFFEE_PRODUCTS[0];
+
+    quizContainer.innerHTML = `
+      <div class="quiz-box">
+        <div class="text-center">
+          <span class="subheading" style="color: var(--c-crema-light);">Curated Taste Match</span>
+          <h2 style="color: var(--c-white); margin-bottom: 0.75rem;">Your Signature Roast Awaits</h2>
+          <p style="color: #dfd3c8; max-width: 550px; margin: 0 auto 2rem;">
+            Based on your answers, our master roastmaster curated this bespoke profile specifically suited to your palate and daily ritual:
+          </p>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.08); border: 1.5px solid var(--c-crema); border-radius: var(--radius-lg); padding: 2rem; display: flex; flex-wrap: wrap; gap: 2rem; align-items: center;">
+          <img src="${rec.image}" alt="${rec.name}" style="width: 140px; height: 140px; border-radius: var(--radius-md); object-fit: cover;" />
+          <div style="flex: 1; min-width: 250px;">
+            <div style="display:flex; gap:0.5rem; margin-bottom: 0.4rem;">
+              <span class="tag" style="background: var(--c-crema); color: var(--c-espresso); font-weight:700;">${rec.roast}</span>
+              <span class="tag" style="background: rgba(255,255,255,0.15); color: #fff;">${rec.origin}</span>
+            </div>
+            <h3 style="color: var(--c-white); font-size: 1.5rem; margin-bottom: 0.3rem;">${rec.name}</h3>
+            <p style="color: var(--c-crema-light); font-size: 0.95rem; margin-bottom: 0.8rem;">
+              <strong>Tasting Notes:</strong> ${rec.notes}
+            </p>
+            <p style="color: #c9bdb3; font-size: 0.9rem; margin-bottom: 1.25rem;">
+              ${rec.description}
+            </p>
+            <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+              <span style="font-size: 1.5rem; font-weight: 800; color: var(--c-crema); font-family: var(--font-serif);">${rec.price.toFixed(2)}</span>
+              <button class="btn btn-primary" onclick="window.cartManager.addItem('${rec.id}');">
+                Add Match to Cart
+              </button>
+              <button class="btn btn-outline-light btn-sm" id="restartQuizBtn">
+                Retake Quiz ↺
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    document.getElementById('restartQuizBtn')?.addEventListener('click', () => {
+      currentStep = 0;
+      userAnswers.length = 0;
+      renderStep();
+    });
+  }
+
+  renderStep();
+}
+
+/* ================= Tasting Notes Modal ================= */
+function initTastingModal() {
+  if (!document.getElementById('tastingModalOverlay')) {
+    const modalHTML = `
+      <div class="modal-overlay" id="tastingModalOverlay">
+        <div class="modal-content" style="max-width: 580px;">
+          <div class="modal-header">
+            <h3 id="tastingModalTitle">Coffee Tasting Dossier</h3>
+            <button class="close-btn" id="closeTastingModalBtn">&times;</button>
+          </div>
+          <div class="modal-body" id="tastingModalBody">
+            <!-- Dynamic Content -->
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+  }
+
+  const overlay = document.getElementById('tastingModalOverlay');
+  const closeBtn = document.getElementById('closeTastingModalBtn');
+
+  if (overlay && closeBtn) {
+    closeBtn.addEventListener('click', () => overlay.classList.remove('open'));
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) overlay.classList.remove('open');
+    });
+  }
+
+  window.openTastingNotes = function(productId) {
+    const product = (window.COFFEE_PRODUCTS || []).find(p => p.id === productId);
+    if (!product) return;
+
+    const body = document.getElementById('tastingModalBody');
+    body.innerHTML = `
+      <div style="display:flex; gap:1.5rem; margin-bottom: 1.5rem; align-items: center;">
+        <img src="${product.image}" alt="${product.name}" style="width: 120px; height: 120px; border-radius: var(--radius-md); object-fit: cover;" />
+        <div>
+          <span class="subheading">${product.roast}</span>
+          <h3 style="font-size: 1.4rem; margin-bottom: 0.3rem;">${product.name}</h3>
+          <p style="font-size: 0.85rem; color: var(--c-crema-hover); font-weight:600;">📍 ${product.origin}</p>
+        </div>
+      </div>
+      <div style="background: var(--c-cream-bg); padding: 1.25rem; border-radius: var(--radius-md); margin-bottom: 1.5rem;">
+        <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--c-text-muted); margin-bottom: 0.3rem;">Cupping Notes:</div>
+        <div style="font-size: 1.1rem; font-weight: 700; color: var(--c-roast);">${product.notes}</div>
+      </div>
+      <p style="color: var(--c-text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">
+        ${product.description}
+      </p>
+      <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--c-border); padding-top: 1rem;">
+        <span style="font-size: 1.4rem; font-weight: 800; color: var(--c-roast); font-family: var(--font-serif);">${product.price.toFixed(2)}</span>
+        <button class="btn btn-primary" onclick="window.cartManager.addItem('${product.id}'); document.getElementById('tastingModalOverlay').classList.remove('open');">
+          Add To Basket
+        </button>
+      </div>
+    `;
+
+    overlay.classList.add('open');
+  };
+}
+
+/* ================= FAQ Accordion ================= */
+function initFAQ() {
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const questionBtn = item.querySelector('.faq-question');
+    questionBtn?.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+
+      // Close all other FAQs in the same group
+      item.parentElement.querySelectorAll('.faq-item').forEach(other => {
+        other.classList.remove('active');
+        other.querySelector('.faq-question')?.setAttribute('aria-expanded', 'false');
+      });
+
+      if (!isActive) {
+        item.classList.add('active');
+        questionBtn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+}
+
+}
+
+if (window.__menu_js_loaded) { /* already loaded */ } else {
+window.__menu_js_loaded = true;
+/* ===================================================================
+   BEAN & BREW - MENU & SHOPPING INTERACTION (menu.js)
+   Filter, Search, Grind Selector, and Dynamic Catalog Rendering
+   =================================================================== */
+
+document.addEventListener('DOMContentLoaded', () => {
+  initMenuCatalog();
+});
+
+function initMenuCatalog() {
+  const grid = document.getElementById('menuItemsGrid');
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const searchInput = document.getElementById('menuSearchInput');
+  const activeCountEl = document.getElementById('itemsMatchCount');
+
+  if (!grid) return;
+
+  let currentCategory = 'all';
+  let searchQuery = '';
+
+  function renderItems() {
+    const products = window.COFFEE_PRODUCTS || [];
+
+    const filtered = products.filter(item => {
+      const matchCat = (currentCategory === 'all') || (item.category === currentCategory);
+      const matchSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          item.notes.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          item.description.toLowerCase().includes(searchQuery.toLowerCase());
+      return matchCat && matchSearch;
+    });
+
+    if (activeCountEl) {
+      activeCountEl.textContent = `Showing ${filtered.length} artisan creation${filtered.length === 1 ? '' : 's'}`;
+    }
+
+    if (filtered.length === 0) {
+      grid.innerHTML = `
+        <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem;">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
+          <h3 style="margin-bottom: 0.5rem;">No Coffee Creations Found</h3>
+          <p style="color: var(--c-text-muted); margin-bottom: 1.5rem;">
+            Try adjusting your search keywords or resetting your filter category.
+          </p>
+          <button class="btn btn-outline" id="resetFiltersBtn">Reset Filters</button>
+        </div>
+      `;
+      document.getElementById('resetFiltersBtn')?.addEventListener('click', () => {
+        currentCategory = 'all';
+        searchQuery = '';
+        if (searchInput) searchInput.value = '';
+        filterBtns.forEach(b => b.classList.toggle('active', b.dataset.category === 'all'));
+        renderItems();
+      });
+      return;
+    }
+
+    grid.innerHTML = filtered.map(item => `
+      <article class="item-card" data-category="${item.category}">
+        <div class="item-card-image">
+          <img src="${item.image}" alt="${item.name}" loading="lazy" />
+          <span class="item-badge">${item.roast}</span>
+        </div>
+        <div class="item-card-body">
+          <div class="item-tags">
+            <span class="tag">📍 ${item.origin}</span>
+            ${item.category === 'beans' ? '<span class="tag">100% Arabica</span>' : ''}
+          </div>
+          <h3>${item.name}</h3>
+          <p>${item.description}</p>
+          
+          <div style="font-size: 0.8rem; color: var(--c-crema-hover); font-weight: 600; margin-bottom: 1rem;">
+            👅 ${item.notes}
+          </div>
+
+          ${item.category === 'beans' ? `
+            <div style="margin-bottom: 1rem;">
+              <label style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--c-text-muted); display: block; margin-bottom: 0.25rem;">
+                Grind Preference:
+              </label>
+              <select class="form-control" id="grind-${item.id}" style="padding: 0.4rem 0.6rem; font-size: 0.85rem;">
+                <option value="Whole Bean">Whole Bean (Maximum Freshness)</option>
+                <option value="French Press">Coarse (French Press / Cold Brew)</option>
+                <option value="Pour Over / V60">Medium (V60 / Chemex / Drip)</option>
+                <option value="Fine Espresso">Fine (Home Espresso / Moka Pot)</option>
+              </select>
+            </div>
+          ` : ''}
+
+          <div class="item-card-footer">
+            <span class="item-price">${item.price.toFixed(2)}</span>
+            <div style="display:flex; gap:0.5rem;">
+              <button class="btn btn-outline btn-sm" onclick="window.openTastingNotes('${item.id}')" title="View Cupping Notes">
+                Notes
+              </button>
+              <button class="btn btn-primary btn-sm" onclick="handleAddToCart('${item.id}')">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+    `).join('');
+  }
+
+  // Handle add with selected grind
+  window.handleAddToCart = function(productId) {
+    const grindSelect = document.getElementById(`grind-${productId}`);
+    const grind = grindSelect ? grindSelect.value : null;
+    if (window.cartManager) {
+      window.cartManager.addItem(productId, grind);
+    }
+  };
+
+  // Filter Buttons
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentCategory = btn.dataset.category || 'all';
+      renderItems();
+    });
+  });
+
+  // Search Input with Debounce
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value.trim();
+      renderItems();
+    });
+  }
+
+  // Initial render
+  renderItems();
+}
+
+}
+
+  </script>
 </body>
 </html>
