@@ -1,3 +1,5 @@
+if (window.__main_js_loaded) { /* already loaded */ } else {
+window.__main_js_loaded = true;
 /* ===================================================================
    BEAN & BREW - CORE INTERACTIVITY & UI SCRIPTS (main.js)
    Navigation, Real-Time Café Status, Quiz Engine, Newsletter & Modals
@@ -354,4 +356,6 @@ function initFAQ() {
       }
     });
   });
+}
+
 }

@@ -1,3 +1,5 @@
+if (window.__menu_js_loaded) { /* already loaded */ } else {
+window.__menu_js_loaded = true;
 /* ===================================================================
    BEAN & BREW - MENU & SHOPPING INTERACTION (menu.js)
    Filter, Search, Grind Selector, and Dynamic Catalog Rendering
@@ -131,4 +133,6 @@ function initMenuCatalog() {
 
   // Initial render
   renderItems();
+}
+
 }

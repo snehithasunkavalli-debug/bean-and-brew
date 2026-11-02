@@ -1,3 +1,5 @@
+if (window.__cart_js_loaded) { /* already loaded */ } else {
+window.__cart_js_loaded = true;
 /* ===================================================================
    BEAN & BREW - GLOBAL CART & CHECKOUT ENGINE (cart.js)
    Cross-page cart persistence, drawer management, and checkout
@@ -600,3 +602,5 @@ class CartManager {
 document.addEventListener('DOMContentLoaded', () => {
   window.cartManager = new CartManager();
 });
+
+}

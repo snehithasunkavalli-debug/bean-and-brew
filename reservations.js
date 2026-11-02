@@ -1,3 +1,5 @@
+if (window.__reservations_js_loaded) { /* already loaded */ } else {
+window.__reservations_js_loaded = true;
 /* ===================================================================
    BEAN & BREW - TABLE RESERVATIONS & EVENT REGISTRATION (reservations.js)
    Table booking validation, VIP pass generation, and Workshop RSVP
@@ -137,4 +139,6 @@ function initEventWorkshops() {
       }
     });
   });
+}
+
 }
