@@ -1,0 +1,430 @@
+<!-- =========================================================================
+     ASSIGNMENT QUESTION 1 • FACULTY: DR. V. ARULKUMAR (18875)
+     ROLE: Digital Solutions Consultant | THEME: Artisan Coffee Shop (Bean & Brew)
+     DEVELOPED FOR & FULLY EDITABLE IN NOTEPAD++ (ZERO DEPENDENCY HTML5/CSS3/JS)
+     ========================================================================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Bean & Brew - Artisan Coffee Roastery & Café. Hand-roasted single-origin coffees, handcrafted espresso beverages, and farm-to-cup sustainability." />
+  <title>Bean & Brew | Artisan Coffee Roastery & Café</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☕</text></svg>" />
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <aside class="top-bar" aria-label="Announcement & Opening Status">
+    <div id="liveCafeStatus">
+      <span class="status-pill open"><span class="status-dot"></span> Loading café status...</span>
+    </div>
+    <div>
+      ☕ <strong>Complimentary Shipping</strong> on all freshly roasted coffee beans over $40 with code <a href="#newsletter">BREW10</a>
+    </div>
+    <div class="top-bar-contact">
+      <span>📞 (503) 555-0198</span>
+      <span>📍 248 Artisan Alley, Portland, OR</span>
+    </div>
+  </aside>
+
+  <!-- Sticky Site Header -->
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="index.html" class="brand-logo" aria-label="Bean & Brew Home">
+        <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M2 19h18v2H2v-2zm16-7V8h2a3 3 0 0 1 3 3v1a3 3 0 0 1-3 3h-2zm0-2h2a1 1 0 0 0 1-1v-1a1 1 0 0 0-1-1h-2v2zM4 17h12V7H4v10zm-2 0V5h16v2h2a5 5 0 0 1 5 5v1a5 5 0 0 1-5 5h-2v1a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"/>
+        </svg>
+        <span>Bean &amp; Brew</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="menu.html" class="nav-link">Café Menu</a>
+        <a href="about.html" class="nav-link">Our Story &amp; Roastery</a>
+        <a href="reservations.html" class="nav-link">Tables &amp; Workshops</a>
+        <a href="shop.html" class="nav-link">Coffee Beans</a>
+        <a href="contact.html" class="nav-link">Visit &amp; Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="cart-btn" aria-label="Open Cart Drawer" title="View Cart">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
+          <span class="cart-badge" style="display:none;">0</span>
+        </button>
+        <a href="reservations.html" class="btn btn-primary btn-sm">Book a Table</a>
+        <button class="mobile-toggle" aria-label="Toggle Navigation Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span>✨</span> Micro-Batch Roastery &amp; Specialty Espresso Bar
+          </div>
+          <h1 class="heading-xl">Crafted With Passion, Roasted To Absolute Perfection.</h1>
+          <p>
+            We ethically source single-origin specialty coffees from family-owned high-altitude farms across the globe, precision-roasting every small batch in our Portland roastery.
+          </p>
+          <div class="hero-cta-group">
+            <a href="menu.html" class="btn btn-primary btn-lg">Explore Café Menu</a>
+            <a href="shop.html" class="btn btn-outline-light btn-lg">Order Whole Beans</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-item">
+              <h4>14+</h4>
+              <p>Direct-Trade Smallholder Farms</p>
+            </div>
+            <div class="stat-item">
+              <h4>4.9 ★</h4>
+              <p>Over 2,800 Verified Reviews</p>
+            </div>
+            <div class="stat-item">
+              <h4>100%</h4>
+              <p>Fair Trade, Organic &amp; Compostable</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Value Propositions / Four Pillars -->
+    <section class="section section-cream">
+      <div class="container text-center">
+        <span class="subheading">The Bean &amp; Brew Distinction</span>
+        <h2 class="heading-lg">Elevating Everyday Rituals Into Extraordinary Experiences</h2>
+        <p class="lead" style="margin: 0.5rem auto 0;">
+          Every bean tells a story of soil, elevation, climate, and relentless dedication. Here is how we preserve that journey in every cup.
+        </p>
+
+        <div class="features-grid text-center">
+          <div class="feature-card">
+            <div class="feature-icon" style="margin: 0 auto 1.5rem;">🌱</div>
+            <h3>Direct Farm Origin</h3>
+            <p>We pay an average of 45% above Fair Trade minimums directly to indigenous growers in Ethiopia, Colombia, Guatemala, and Sumatra.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon" style="margin: 0 auto 1.5rem;">🔥</div>
+            <h3>Micro-Batch Roasting</h3>
+            <p>Our Loring Smart Roaster allows zero convection scorching and computer-monitored thermodynamic curves for pristine aromatic clarity.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon" style="margin: 0 auto 1.5rem;">⏱️</div>
+            <h3>Peak Freshness Guarantee</h3>
+            <p>Shipped within 48 hours of roasting in valved, oxygen-purged bags so you experience peak degassing aromatics at home.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon" style="margin: 0 auto 1.5rem;">🌍</div>
+            <h3>100% Circular Footprint</h3>
+            <p>From plant-based cornstarch cups to repurposed spent coffee grounds composted with local urban gardens, zero goes to landfill.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Signature Creations Preview -->
+    <section class="section">
+      <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <span class="subheading">Curated Favorites</span>
+            <h2 class="heading-lg">Our Barista &amp; Roaster Signatures</h2>
+          </div>
+          <a href="menu.html" class="btn btn-outline">View Full Menu &rarr;</a>
+        </div>
+
+        <div class="grid-4">
+          <!-- Item 1 -->
+          <article class="item-card">
+            <div class="item-card-image">
+              <img src="https://images.unsplash.com/photo-1587734195503-904fca47e0e9?auto=format&fit=crop&w=700&q=80" alt="Ethiopian Yirgacheffe G1 Coffee Beans" />
+              <span class="item-badge">Light Roast</span>
+            </div>
+            <div class="item-card-body">
+              <div class="item-tags">
+                <span class="tag">Single Origin</span>
+                <span class="tag">Ethiopia</span>
+              </div>
+              <h3>Ethiopian Yirgacheffe G1</h3>
+              <p>Floral aromatics, bergamot tea clarity, and sweet peach nectar finish.</p>
+              <div class="item-card-footer">
+                <span class="item-price">$19.50</span>
+                <button class="btn btn-primary btn-sm" onclick="window.cartManager.addItem('ethiopian-yirgacheffe')">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 2 -->
+          <article class="item-card">
+            <div class="item-card-image">
+              <img src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=700&q=80" alt="Smoked Vanilla Cortado" />
+              <span class="item-badge">Café Favorite</span>
+            </div>
+            <div class="item-card-body">
+              <div class="item-tags">
+                <span class="tag">Espresso Bar</span>
+                <span class="tag">Oat Milk</span>
+              </div>
+              <h3>Smoked Vanilla Cortado</h3>
+              <p>Double ristretto cut 1:1 with textured warm oat milk &amp; Madagascar bourbon vanilla.</p>
+              <div class="item-card-footer">
+                <span class="item-price">$5.75</span>
+                <button class="btn btn-primary btn-sm" onclick="window.cartManager.addItem('artisan-caramel-cortado')">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 3 -->
+          <article class="item-card">
+            <div class="item-card-image">
+              <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=700&q=80" alt="Cascara Nitro Cold Brew" />
+              <span class="item-badge">Chilled on Tap</span>
+            </div>
+            <div class="item-card-body">
+              <div class="item-tags">
+                <span class="tag">Cold Extraction</span>
+                <span class="tag">Zero Sugar</span>
+              </div>
+              <h3>Cascara Nitro Cold Brew</h3>
+              <p>Steeped for 20 hours with cascading micro-bubbles and rich dark cherry notes.</p>
+              <div class="item-card-footer">
+                <span class="item-price">$6.25</span>
+                <button class="btn btn-primary btn-sm" onclick="window.cartManager.addItem('nitro-cold-brew')">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 4 -->
+          <article class="item-card">
+            <div class="item-card-image">
+              <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=700&q=80" alt="Double-Baked Almond Croissant" />
+              <span class="item-badge">Bakery Special</span>
+            </div>
+            <div class="item-card-body">
+              <div class="item-tags">
+                <span class="tag">Baked Daily</span>
+                <span class="tag">French Pastry</span>
+              </div>
+              <h3>Double-Baked Almond Croissant</h3>
+              <p>Flaky butter croissant filled with almond frangipane cream and toasted sliced almonds.</p>
+              <div class="item-card-footer">
+                <span class="item-price">$4.85</span>
+                <button class="btn btn-primary btn-sm" onclick="window.cartManager.addItem('almond-croissant')">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Coffee Quiz Widget Section -->
+    <section class="section section-dark">
+      <div class="container container-narrow">
+        <div id="coffeeQuizContainer">
+          <!-- Quiz engine renders dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Story Banner / The Roastery Sanctuary -->
+    <section class="section">
+      <div class="container">
+        <div class="grid-2">
+          <div>
+            <span class="subheading">The Roastery Experience</span>
+            <h2 class="heading-lg">A Warm Sanctuary for Coffee Purists &amp; Dreamers Alike</h2>
+            <p style="color: var(--c-text-muted); margin: 1.5rem 0; font-size: 1.05rem; line-height: 1.7;">
+              Housed in a restored 1920s brick timber warehouse in the heart of Portland, Bean &amp; Brew is equal parts production roastery, culinary sanctuary, and community hub. Watch our cast-iron roasters spin while you savor slow pour-overs brewed on pristine Hario V60 stations.
+            </p>
+            <div style="display:flex; flex-direction:column; gap: 0.8rem; margin-bottom: 2rem;">
+              <div style="display:flex; align-items:center; gap:0.75rem;">
+                <span style="color: var(--c-crema); font-weight:bold; font-size: 1.2rem;">✓</span>
+                <span>Sunlit courtyard patio &amp; cozy leather fireside seating</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:0.75rem;">
+                <span style="color: var(--c-crema); font-weight:bold; font-size: 1.2rem;">✓</span>
+                <span>Weekend sensory cupping flights &amp; barista masterclasses</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:0.75rem;">
+                <span style="color: var(--c-crema); font-weight:bold; font-size: 1.2rem;">✓</span>
+                <span>Full plant milk bar (House Oat, Almond, Macadamia) at zero upcharge</span>
+              </div>
+            </div>
+            <div style="display:flex; gap:1rem;">
+              <a href="about.html" class="btn btn-secondary">Read Our Origins</a>
+              <a href="reservations.html" class="btn btn-outline">Reserve a Table</a>
+            </div>
+          </div>
+          <div>
+            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1000&q=80" alt="Interior of Bean and Brew Cafe with warm lighting and wooden tables" style="border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); width:100%; object-fit:cover; height: 460px;" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section section-cream">
+      <div class="container text-center">
+        <span class="subheading">Voices From Our Community</span>
+        <h2 class="heading-lg">Loved by Baristas, Food Critics &amp; Everyday Coffee Lovers</h2>
+
+        <div class="grid-3" style="margin-top: 3.5rem; text-align: left;">
+          <div class="testimonial-card">
+            <div>
+              <div class="stars">★★★★★</div>
+              <p class="testimonial-text">
+                "The Ethiopian Yirgacheffe is hands down the cleanest, most aromatically nuanced light roast in the Pacific Northwest. You can genuinely taste the candied peach."
+              </p>
+            </div>
+            <div class="testimonial-author">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Marcus Sterling" class="author-avatar" />
+              <div class="author-info">
+                <h4>Marcus Sterling</h4>
+                <p>Coffee Columnist, Pacific Gastronomy</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div>
+              <div class="stars">★★★★★</div>
+              <p class="testimonial-text">
+                "Bean &amp; Brew is our design team’s weekly sanctuary. Their Smoked Vanilla Cortado and almond croissants are perfection, and the staff remembers your name and brew style."
+              </p>
+            </div>
+            <div class="testimonial-author">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="Elena Rostova" class="author-avatar" />
+              <div class="author-info">
+                <h4>Elena Rostova</h4>
+                <p>Creative Director, Studio Nine</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div>
+              <div class="stars">★★★★★</div>
+              <p class="testimonial-text">
+                "I attended their Saturday Cupping Masterclass with my partner. An eye-opening sensory masterclass that completely changed how I brew at home."
+              </p>
+            </div>
+            <div class="testimonial-author">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80" alt="Chloe Nguyen" class="author-avatar" />
+              <div class="author-info">
+                <h4>Chloe Nguyen</h4>
+                <p>Home Brewer &amp; SCAA Certified Member</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter CTA Box -->
+    <section class="section" id="newsletter">
+      <div class="container container-narrow">
+        <div style="background: linear-gradient(135deg, var(--c-roast), var(--c-espresso)); color: var(--c-white); border-radius: var(--radius-lg); padding: 3.5rem 2.5rem; text-align: center; box-shadow: var(--shadow-xl);">
+          <span class="subheading" style="color: var(--c-crema-light);">Join The Roaster's Circle</span>
+          <h2 style="color: var(--c-white); margin: 0.5rem 0 1rem; font-size: 2.2rem;">Enjoy 10% Off Your First Coffee Order</h2>
+          <p style="color: #dfd3c8; max-width: 520px; margin: 0 auto 2rem; font-size: 1rem;">
+            Subscribe to receive seasonal micro-lot release alerts, invitation-only tasting events, and professional brewing recipes straight to your inbox.
+          </p>
+          <form class="newsletter-form" style="max-width: 480px; margin: 0 auto;">
+            <input type="email" class="newsletter-input" placeholder="Enter your email address" required />
+            <button type="submit" class="btn btn-primary">Claim 10% Off</button>
+          </form>
+          <div style="font-size: 0.8rem; color: #a89a8f; margin-top: 1rem;">
+            Use code <strong>BREW10</strong> at checkout • No spam, unsubscribe anytime
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo" style="color: var(--c-white);">
+            <svg fill="currentColor" viewBox="0 0 24 24" width="30" height="30" aria-hidden="true">
+              <path d="M2 19h18v2H2v-2zm16-7V8h2a3 3 0 0 1 3 3v1a3 3 0 0 1-3 3h-2zm0-2h2a1 1 0 0 0 1-1v-1a1 1 0 0 0-1-1h-2v2zM4 17h12V7H4v10zm-2 0V5h16v2h2a5 5 0 0 1 5 5v1a5 5 0 0 1-5 5h-2v1a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"/>
+            </svg>
+            <span>Bean &amp; Brew</span>
+          </a>
+          <p>
+            An independent artisan coffee roastery and café dedicated to ethical single-origin sourcing, meticulous micro-batch roasting, and welcoming hospitality.
+          </p>
+          <div class="social-links">
+            <a href="#" class="social-btn" aria-label="Instagram">📸</a>
+            <a href="#" class="social-btn" aria-label="Twitter">🐦</a>
+            <a href="#" class="social-btn" aria-label="YouTube">▶️</a>
+            <a href="#" class="social-btn" aria-label="Spotify">🎧</a>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="menu.html">Café Menu</a></li>
+            <li><a href="shop.html">Whole Bean Coffees</a></li>
+            <li><a href="about.html">Our Farm Partners</a></li>
+            <li><a href="reservations.html">Table Reservations</a></li>
+            <li><a href="reservations.html#workshops">Barista Workshops</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Roastery Locations</h4>
+          <ul>
+            <li><strong>Flagship Roastery &amp; Café:</strong></li>
+            <li>248 Artisan Alley, Portland, OR</li>
+            <li style="margin-top: 0.5rem;"><strong>Uptown Garden Espresso:</strong></li>
+            <li>1042 NW Irving Street, Portland, OR</li>
+            <li style="margin-top: 0.5rem;"><a href="contact.html">View Maps &amp; Hours &rarr;</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Café Hours</h4>
+          <ul>
+            <li><strong>Monday – Friday:</strong></li>
+            <li>6:30 AM – 8:00 PM</li>
+            <li style="margin-top: 0.5rem;"><strong>Saturday – Sunday:</strong></li>
+            <li>7:30 AM – 9:00 PM</li>
+            <li style="margin-top: 0.5rem;"><span style="color: var(--c-crema);">Fresh Roasting: Tue &amp; Thu</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Bean &amp; Brew Artisan Coffee Roasters. All rights reserved. Built with pride as a Digital Solutions Consultant showcase.</div>
+        <div style="display:flex; gap: 1.5rem;">
+          <a href="contact.html">Privacy Policy</a>
+          <a href="contact.html">Terms of Service</a>
+          <a href="contact.html">Sustainability Report</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

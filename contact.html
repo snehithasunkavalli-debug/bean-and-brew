@@ -1,0 +1,418 @@
+<!-- =========================================================================
+     ASSIGNMENT QUESTION 1 • FACULTY: DR. V. ARULKUMAR (18875)
+     ROLE: Digital Solutions Consultant | THEME: Artisan Coffee Shop (Bean & Brew)
+     DEVELOPED FOR & FULLY EDITABLE IN NOTEPAD++ (ZERO DEPENDENCY HTML5/CSS3/JS)
+     ========================================================================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contact Bean & Brew Artisan Coffee Roasters. Find our Portland locations, operating hours, wholesale inquiries, and frequently asked questions." />
+  <title>Visit Us &amp; Contact | Bean &amp; Brew</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☕</text></svg>" />
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <aside class="top-bar" aria-label="Announcement & Opening Status">
+    <div id="liveCafeStatus">
+      <span class="status-pill open"><span class="status-dot"></span> Loading café status...</span>
+    </div>
+    <div>
+      ☕ <strong>Wholesale Partnerships:</strong> We supply specialty beans &amp; commercial espresso machinery to cafes nationwide.
+    </div>
+    <div class="top-bar-contact">
+      <span>📞 (503) 555-0198</span>
+      <span>📍 248 Artisan Alley, Portland</span>
+    </div>
+  </aside>
+
+  <!-- Sticky Site Header -->
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="index.html" class="brand-logo" aria-label="Bean & Brew Home">
+        <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M2 19h18v2H2v-2zm16-7V8h2a3 3 0 0 1 3 3v1a3 3 0 0 1-3 3h-2zm0-2h2a1 1 0 0 0 1-1v-1a1 1 0 0 0-1-1h-2v2zM4 17h12V7H4v10zm-2 0V5h16v2h2a5 5 0 0 1 5 5v1a5 5 0 0 1-5 5h-2v1a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"/>
+        </svg>
+        <span>Bean &amp; Brew</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="menu.html" class="nav-link">Café Menu</a>
+        <a href="about.html" class="nav-link">Our Story &amp; Roastery</a>
+        <a href="reservations.html" class="nav-link">Tables &amp; Workshops</a>
+        <a href="shop.html" class="nav-link">Coffee Beans</a>
+        <a href="contact.html" class="nav-link active">Visit &amp; Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="cart-btn" aria-label="Open Cart Drawer" title="View Cart">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
+          <span class="cart-badge" style="display:none;">0</span>
+        </button>
+        <a href="reservations.html" class="btn btn-primary btn-sm">Book a Table</a>
+        <button class="mobile-toggle" aria-label="Toggle Navigation Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Contact Hero -->
+    <section class="section" style="background: linear-gradient(rgba(24, 13, 8, 0.72), rgba(44, 24, 16, 0.82)), url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1600&q=80') center/cover; color: var(--c-white); padding: 5rem 0; text-align: center;">
+      <div class="container container-narrow">
+        <span class="subheading" style="color: var(--c-crema-light);">Visit Our Cafés</span>
+        <h1 class="heading-xl" style="color: var(--c-white); margin-bottom: 0.75rem;">Get in Touch &amp; Find Us</h1>
+        <p style="color: #dfd3c8; font-size: 1.15rem; max-width: 650px; margin: 0 auto;">
+          Whether you want to drop by for a morning pour-over, discuss commercial wholesale coffee supply, or plan a private event buyout, our doors and inboxes are always open.
+        </p>
+      </div>
+    </section>
+
+    <!-- Dual Locations Showcase -->
+    <section class="section">
+      <div class="container">
+        <div class="text-center" style="margin-bottom: 3.5rem;">
+          <span class="subheading">Two Portland Locations</span>
+          <h2 class="heading-lg">Step Inside Our Coffee Spaces</h2>
+        </div>
+
+        <div class="grid-2">
+          <!-- Location 1 -->
+          <div class="feature-card" style="padding: 0; overflow: hidden;">
+            <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=800&q=80" alt="Flagship Roastery Exterior" style="width:100%; height:240px; object-fit:cover;" />
+            <div style="padding: 2rem;">
+              <span class="subheading">Flagship Location</span>
+              <h3>Downtown Roastery &amp; Tasting Lab</h3>
+              <p style="color: var(--c-text-muted); margin: 0.5rem 0 1.25rem;">
+                Our active micro-roasting headquarters featuring our Loring roaster, full pour-over bar, and indoor courtyard lounge.
+              </p>
+              <div style="display:flex; flex-direction:column; gap:0.5rem; font-size:0.9rem; margin-bottom: 1.5rem;">
+                <div>📍 <strong>Address:</strong> 248 Artisan Alley, Portland, OR 97205</div>
+                <div>📞 <strong>Phone:</strong> (503) 555-0198</div>
+                <div>⏰ <strong>Hours:</strong> Mon–Fri: 6:30 AM – 8:00 PM | Sat–Sun: 7:30 AM – 9:00 PM</div>
+                <div>✨ <strong>Amenities:</strong> High-speed Wi-Fi, Patio, Live Roasting Viewing</div>
+              </div>
+              <a href="https://maps.google.com" target="_blank" rel="noopener" class="btn btn-outline btn-sm">Get Directions &rarr;</a>
+            </div>
+          </div>
+
+          <!-- Location 2 -->
+          <div class="feature-card" style="padding: 0; overflow: hidden;">
+            <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=format&fit=crop&w=800&q=80" alt="Uptown Garden Espresso Bar" style="width:100%; height:240px; object-fit:cover;" />
+            <div style="padding: 2rem;">
+              <span class="subheading">Uptown Sanctuary</span>
+              <h3>Garden Espresso &amp; Pastry Bar</h3>
+              <p style="color: var(--c-text-muted); margin: 0.5rem 0 1.25rem;">
+                A leafy greenhouse café nestled in the Pearl District, celebrated for quiet work sessions, matcha infusions, and fresh bakery treats.
+              </p>
+              <div style="display:flex; flex-direction:column; gap:0.5rem; font-size:0.9rem; margin-bottom: 1.5rem;">
+                <div>📍 <strong>Address:</strong> 1042 NW Irving Street, Portland, OR 97209</div>
+                <div>📞 <strong>Phone:</strong> (503) 555-0144</div>
+                <div>⏰ <strong>Hours:</strong> Daily: 7:00 AM – 7:00 PM</div>
+                <div>✨ <strong>Amenities:</strong> Outdoor Garden, Pet Friendly, Cold Brew on Tap</div>
+              </div>
+              <a href="https://maps.google.com" target="_blank" rel="noopener" class="btn btn-outline btn-sm">Get Directions &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Contact Form & Message Dispatcher -->
+    <section class="section section-cream">
+      <div class="container container-narrow">
+        <div style="background: var(--c-white); border-radius: var(--radius-lg); padding: 3rem 2.5rem; border: 1px solid var(--c-border); box-shadow: var(--shadow-lg);">
+          <div class="text-center" style="margin-bottom: 2.5rem;">
+            <span class="subheading">Direct Message</span>
+            <h2 class="heading-md">Send Our Team a Note</h2>
+            <p style="color: var(--c-text-muted); font-size: 0.95rem;">
+              We usually reply within 4 business hours. For immediate order modifications, please call our roastery desk directly.
+            </p>
+          </div>
+
+          <form id="contactInquiryForm">
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label" for="contactName">Your Name *</label>
+                <input type="text" id="contactName" class="form-control" placeholder="Sarah Jenkins" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="contactEmail">Email Address *</label>
+                <input type="email" id="contactEmail" class="form-control" placeholder="sarah@example.com" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="contactPhone">Phone Number</label>
+                <input type="tel" id="contactPhone" class="form-control" placeholder="(503) 555-0122" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="contactSubject">Inquiry Topic *</label>
+                <select id="contactSubject" class="form-control" required>
+                  <option value="General Question" selected>General Café Question</option>
+                  <option value="Wholesale Supply">Commercial Wholesale Coffee Supply</option>
+                  <option value="Private Event">Private Buyout or Workshop Booking</option>
+                  <option value="Catering">Office &amp; Gathering Catering Quote</option>
+                  <option value="Careers">Barista / Roastery Careers</option>
+                </select>
+              </div>
+
+              <div class="form-group form-full">
+                <label class="form-label" for="contactMessage">Your Message *</label>
+                <textarea id="contactMessage" class="form-control" placeholder="Tell us how we can assist you..." required></textarea>
+                <div style="display:flex; justify-content: flex-end; font-size: 0.75rem; color: var(--c-text-muted); margin-top: 0.25rem;">
+                  <span id="charCount">0 / 500 characters</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top: 2rem; text-align: center;">
+              <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+                Send Message to Roasters
+              </button>
+            </div>
+          </form>
+
+          <!-- Contact Success Screen (Hidden by default) -->
+          <div id="contactSuccessCard" style="display:none; text-align:center; padding: 2.5rem 1rem;">
+            <div style="width: 65px; height: 65px; background: var(--c-success-bg); color: var(--c-success); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1.5rem;">
+              ✓
+            </div>
+            <h3 style="margin-bottom: 0.5rem;">Message Delivered to the Roastery!</h3>
+            <p style="color: var(--c-text-muted); max-width: 480px; margin: 0 auto 1.5rem;">
+              Thank you, <strong id="successSenderName">Friend</strong>. Our coffee relations manager has received your note regarding <strong id="successTopic">General Inquiry</strong> and will be in touch shortly.
+            </p>
+            <button class="btn btn-outline" id="sendAnotherBtn">Send Another Inquiry</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Frequently Asked Questions Accordion -->
+    <section class="section">
+      <div class="container container-narrow">
+        <div class="text-center">
+          <span class="subheading">Common Questions</span>
+          <h2 class="heading-lg">Frequently Asked Questions</h2>
+          <p class="lead" style="margin: 0.5rem auto 0;">
+            Everything you need to know about our beans, café etiquette, and online orders.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <!-- FAQ 1 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>When are your coffee beans roasted and how fresh are they?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-answer">
+              We roast micro-batches on Tuesdays and Thursdays every week. All web orders are shipped within 24 to 48 hours of roasting in nitrogen-purged valve bags, guaranteeing you receive them at peak degassing balance.
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Do you offer decaffeinated coffee, and what process is used?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-answer">
+              Yes! We roast a certified organic Swiss Water Process Colombia decaf. This 100% chemical-free decaffeination method uses pure mountain water and green coffee extract to gently remove 99.9% of caffeine while preserving rich caramel and nutty oils.
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>What is your laptop and remote work policy in the café?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-answer">
+              We welcome remote workers! We offer high-speed fiber Wi-Fi and power outlets in our Library Alcove and indoor communal tables from Monday through Friday. On weekends, our fireside lounge is laptop-free to foster conversation and reading.
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Do you charge extra for non-dairy oat or plant milks?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-answer">
+              Never. We firmly believe eco-conscious plant milk options should not carry a surcharge. Minor Figures Barista Oat Milk and house-pressed organic almond milk are always included at zero additional cost.
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>How does your online coffee subscription work?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-answer">
+              Subscribers save 15% on every bag, receive free nationwide shipping, and get first access to rare micro-lot releases. You can select 1, 2, or 4-week frequencies, modify your grind, pause, or cancel anytime with one click in your account.
+            </div>
+          </div>
+
+          <!-- FAQ 6 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Can I book the café for private celebrations or photoshoots?</span>
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-answer">
+              Yes, both our Downtown Roastery Courtyard and Uptown Garden space are available for evening buyouts (after 7:30 PM) for private gatherings, workshops, acoustic performances, and editorial photoshoots. Fill out the contact form above with the "Private Event" topic.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo" style="color: var(--c-white);">
+            <svg fill="currentColor" viewBox="0 0 24 24" width="30" height="30" aria-hidden="true">
+              <path d="M2 19h18v2H2v-2zm16-7V8h2a3 3 0 0 1 3 3v1a3 3 0 0 1-3 3h-2zm0-2h2a1 1 0 0 0 1-1v-1a1 1 0 0 0-1-1h-2v2zM4 17h12V7H4v10zm-2 0V5h16v2h2a5 5 0 0 1 5 5v1a5 5 0 0 1-5 5h-2v1a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"/>
+            </svg>
+            <span>Bean &amp; Brew</span>
+          </a>
+          <p>
+            An independent artisan coffee roastery and café dedicated to ethical single-origin sourcing, meticulous micro-batch roasting, and welcoming hospitality.
+          </p>
+          <div class="social-links">
+            <a href="#" class="social-btn" aria-label="Instagram">📸</a>
+            <a href="#" class="social-btn" aria-label="Twitter">🐦</a>
+            <a href="#" class="social-btn" aria-label="YouTube">▶️</a>
+            <a href="#" class="social-btn" aria-label="Spotify">🎧</a>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="menu.html">Café Menu</a></li>
+            <li><a href="shop.html">Whole Bean Coffees</a></li>
+            <li><a href="about.html">Our Farm Partners</a></li>
+            <li><a href="reservations.html">Table Reservations</a></li>
+            <li><a href="reservations.html#workshops">Barista Workshops</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Roastery Locations</h4>
+          <ul>
+            <li><strong>Flagship Roastery &amp; Café:</strong></li>
+            <li>248 Artisan Alley, Portland, OR</li>
+            <li style="margin-top: 0.5rem;"><strong>Uptown Garden Espresso:</strong></li>
+            <li>1042 NW Irving Street, Portland, OR</li>
+            <li style="margin-top: 0.5rem;"><a href="contact.html">View Maps &amp; Hours &rarr;</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Café Hours</h4>
+          <ul>
+            <li><strong>Monday – Friday:</strong></li>
+            <li>6:30 AM – 8:00 PM</li>
+            <li style="margin-top: 0.5rem;"><strong>Saturday – Sunday:</strong></li>
+            <li>7:30 AM – 9:00 PM</li>
+            <li style="margin-top: 0.5rem;"><span style="color: var(--c-crema);">Fresh Roasting: Tue &amp; Thu</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Bean &amp; Brew Artisan Coffee Roasters. All rights reserved. Built with pride as a Digital Solutions Consultant showcase.</div>
+        <div style="display:flex; gap: 1.5rem;">
+          <a href="contact.html">Privacy Policy</a>
+          <a href="contact.html">Terms of Service</a>
+          <a href="contact.html">Sustainability Report</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Contact Form Handler
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('contactInquiryForm');
+      const successCard = document.getElementById('contactSuccessCard');
+      const msgArea = document.getElementById('contactMessage');
+      const charCount = document.getElementById('charCount');
+      const sendAnotherBtn = document.getElementById('sendAnotherBtn');
+
+      // Pre-select topic if query string passed (e.g. ?subject=Catering)
+      const params = new URLSearchParams(window.location.search);
+      const subjectParam = params.get('subject');
+      if (subjectParam) {
+        const select = document.getElementById('contactSubject');
+        for (let opt of select.options) {
+          if (opt.value.toLowerCase().includes(subjectParam.toLowerCase()) || subjectParam.toLowerCase().includes(opt.value.toLowerCase())) {
+            opt.selected = true;
+            break;
+          }
+        }
+      }
+
+      // Character counter
+      if (msgArea && charCount) {
+        msgArea.addEventListener('input', () => {
+          const len = msgArea.value.length;
+          charCount.textContent = `${len} / 500 characters`;
+          if (len > 500) {
+            charCount.style.color = 'var(--c-danger)';
+          } else {
+            charCount.style.color = 'var(--c-text-muted)';
+          }
+        });
+      }
+
+      // Form submission
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const name = document.getElementById('contactName').value;
+          const topic = document.getElementById('contactSubject').value;
+
+          document.getElementById('successSenderName').textContent = name;
+          document.getElementById('successTopic').textContent = topic;
+
+          form.style.display = 'none';
+          successCard.style.display = 'block';
+
+          if (window.cartManager) {
+            window.cartManager.showToast(`Thank you, ${name}! Your inquiry has been dispatched.`, 'success');
+          }
+        });
+      }
+
+      if (sendAnotherBtn) {
+        sendAnotherBtn.addEventListener('click', () => {
+          form.reset();
+          if (charCount) charCount.textContent = '0 / 500 characters';
+          successCard.style.display = 'none';
+          form.style.display = 'block';
+        });
+      }
+    });
+  </script>
+</body>
+</html>

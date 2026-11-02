@@ -1,0 +1,362 @@
+<!-- =========================================================================
+     ASSIGNMENT QUESTION 1 • FACULTY: DR. V. ARULKUMAR (18875)
+     ROLE: Digital Solutions Consultant | THEME: Artisan Coffee Shop (Bean & Brew)
+     DEVELOPED FOR & FULLY EDITABLE IN NOTEPAD++ (ZERO DEPENDENCY HTML5/CSS3/JS)
+     ========================================================================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Shop freshly roasted whole bean coffees, single-origin micro-lots, and precision barista brewing gear from Bean & Brew." />
+  <title>Coffee Beans &amp; Barista Gear | Bean &amp; Brew</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☕</text></svg>" />
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <aside class="top-bar" aria-label="Announcement & Opening Status">
+    <div id="liveCafeStatus">
+      <span class="status-pill open"><span class="status-dot"></span> Loading café status...</span>
+    </div>
+    <div>
+      📦 <strong>Free Nationwide Shipping</strong> on all coffee orders over $40. Roasted fresh within 48 hours.
+    </div>
+    <div class="top-bar-contact">
+      <span>📞 (503) 555-0198</span>
+      <span>📍 248 Artisan Alley, Portland</span>
+    </div>
+  </aside>
+
+  <!-- Sticky Site Header -->
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="index.html" class="brand-logo" aria-label="Bean & Brew Home">
+        <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M2 19h18v2H2v-2zm16-7V8h2a3 3 0 0 1 3 3v1a3 3 0 0 1-3 3h-2zm0-2h2a1 1 0 0 0 1-1v-1a1 1 0 0 0-1-1h-2v2zM4 17h12V7H4v10zm-2 0V5h16v2h2a5 5 0 0 1 5 5v1a5 5 0 0 1-5 5h-2v1a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"/>
+        </svg>
+        <span>Bean &amp; Brew</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="menu.html" class="nav-link">Café Menu</a>
+        <a href="about.html" class="nav-link">Our Story &amp; Roastery</a>
+        <a href="reservations.html" class="nav-link">Tables &amp; Workshops</a>
+        <a href="shop.html" class="nav-link active">Coffee Beans</a>
+        <a href="contact.html" class="nav-link">Visit &amp; Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="cart-btn" aria-label="Open Cart Drawer" title="View Cart">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
+          <span class="cart-badge" style="display:none;">0</span>
+        </button>
+        <a href="reservations.html" class="btn btn-primary btn-sm">Book a Table</a>
+        <button class="mobile-toggle" aria-label="Toggle Navigation Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Shop Hero -->
+    <section class="section" style="background: linear-gradient(rgba(24, 13, 8, 0.72), rgba(44, 24, 16, 0.82)), url('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1600&q=80') center/cover; color: var(--c-white); padding: 5rem 0; text-align: center;">
+      <div class="container container-narrow">
+        <span class="subheading" style="color: var(--c-crema-light);">Micro-Lot Roasts Delivered Fresh</span>
+        <h1 class="heading-xl" style="color: var(--c-white); margin-bottom: 0.75rem;">Specialty Whole Beans &amp; Gear</h1>
+        <p style="color: #dfd3c8; font-size: 1.15rem; max-width: 650px; margin: 0 auto;">
+          Shipped straight from our roastery in Portland to your kitchen counter. Select your preferred grind or choose whole bean for peak aromatic preservation.
+        </p>
+      </div>
+    </section>
+
+    <!-- Subscription Perk Banner -->
+    <section style="background-color: var(--c-roast); color: var(--c-latte); padding: 1.5rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+      <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <div style="display:flex; align-items:center; gap: 1rem;">
+          <span style="font-size: 2rem;">📦</span>
+          <div>
+            <strong style="color: var(--c-white);">Join the Roaster’s Subscription Club:</strong>
+            <span style="color: #dfd3c8; font-size: 0.95rem;"> Save 15% on recurring deliveries + free shipping forever. Pause or cancel anytime.</span>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="if(window.cartManager) window.cartManager.showToast('Subscription selector coming with your first bag! Add any roast to start.', 'info')">Subscribe &amp; Save 15%</button>
+      </div>
+    </section>
+
+    <!-- Product Grid Section -->
+    <section class="section">
+      <div class="container">
+        <!-- Roaster Catalog -->
+        <div class="grid-3" id="shopCatalogGrid">
+          <!-- Item 1: Ethiopian -->
+          <article class="item-card">
+            <div class="item-card-image">
+              <img src="https://images.unsplash.com/photo-1587734195503-904fca47e0e9?auto=format&fit=crop&w=700&q=80" alt="Ethiopian Yirgacheffe G1 Coffee" />
+              <span class="item-badge">Light Roast</span>
+            </div>
+            <div class="item-card-body">
+              <div class="item-tags">
+                <span class="tag">Gedeo Zone, Ethiopia</span>
+                <span class="tag">Washed Process</span>
+              </div>
+              <h3>Ethiopian Yirgacheffe G1</h3>
+              <p>A delicately floral, tea-like washed Ethiopian bean with sparkling citrus acidity and a clean lingering honeysuckle finish.</p>
+              <div style="font-size: 0.85rem; color: var(--c-crema-hover); font-weight:600; margin-bottom: 1rem;">
+                👅 Notes: Jasmine, Bergamot, Peach Nectar
+              </div>
+              <div style="margin-bottom: 1rem;">
+                <label style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--c-text-muted); display: block; margin-bottom: 0.25rem;">Grind Selection:</label>
+                <select class="form-control" id="grind-shop-ethiopian" style="padding: 0.4rem 0.6rem; font-size: 0.85rem;">
+                  <option value="Whole Bean">Whole Bean (Optimal Freshness)</option>
+                  <option value="French Press">Coarse (French Press / Cold Brew)</option>
+                  <option value="Pour Over / V60">Medium (V60 / Chemex / Drip)</option>
+                  <option value="Fine Espresso">Fine (Home Espresso / Moka Pot)</option>
+                </select>
+              </div>
+              <div class="item-card-footer">
+                <span class="item-price">$19.50</span>
+                <button class="btn btn-primary btn-sm" onclick="handleShopAdd('ethiopian-yirgacheffe', 'grind-shop-ethiopian')">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 2: Colombian -->
+          <article class="item-card">
+            <div class="item-card-image">
+              <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=700&q=80" alt="Colombian Pink Bourbon" />
+              <span class="item-badge">Medium Roast</span>
+            </div>
+            <div class="item-card-body">
+              <div class="item-tags">
+                <span class="tag">Huila, Colombia</span>
+                <span class="tag">Micro-Lot</span>
+              </div>
+              <h3>Colombian Huila Pink Bourbon</h3>
+              <p>Rare Pink Bourbon varietal offering high sweetness, velvety body, and sweet caramel toffee nuances.</p>
+              <div style="font-size: 0.85rem; color: var(--c-crema-hover); font-weight:600; margin-bottom: 1rem;">
+                👅 Notes: Red Currant, Brown Sugar, Milk Chocolate
+              </div>
+              <div style="margin-bottom: 1rem;">
+                <label style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--c-text-muted); display: block; margin-bottom: 0.25rem;">Grind Selection:</label>
+                <select class="form-control" id="grind-shop-colombian" style="padding: 0.4rem 0.6rem; font-size: 0.85rem;">
+                  <option value="Whole Bean">Whole Bean (Optimal Freshness)</option>
+                  <option value="French Press">Coarse (French Press / Cold Brew)</option>
+                  <option value="Pour Over / V60">Medium (V60 / Chemex / Drip)</option>
+                  <option value="Fine Espresso">Fine (Home Espresso / Moka Pot)</option>
+                </select>
+              </div>
+              <div class="item-card-footer">
+                <span class="item-price">$21.00</span>
+                <button class="btn btn-primary btn-sm" onclick="handleShopAdd('colombian-huila-reserve', 'grind-shop-colombian')">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 3: Sumatra -->
+          <article class="item-card">
+            <div class="item-card-image">
+              <img src="https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?auto=format&fit=crop&w=700&q=80" alt="Sumatra Mandheling Vintage" />
+              <span class="item-badge">Dark Roast</span>
+            </div>
+            <div class="item-card-body">
+              <div class="item-tags">
+                <span class="tag">Lintong, Sumatra</span>
+                <span class="tag">Giling Basah</span>
+              </div>
+              <h3>Sumatra Mandheling Vintage</h3>
+              <p>Wet-hulled processing yields heavy syrupy body, earthy cedar nuances, and an ultra-low acidity chocolate richness.</p>
+              <div style="font-size: 0.85rem; color: var(--c-crema-hover); font-weight:600; margin-bottom: 1rem;">
+                👅 Notes: Dark Cocoa, Cedarwood, Roasted Walnut
+              </div>
+              <div style="margin-bottom: 1rem;">
+                <label style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--c-text-muted); display: block; margin-bottom: 0.25rem;">Grind Selection:</label>
+                <select class="form-control" id="grind-shop-sumatra" style="padding: 0.4rem 0.6rem; font-size: 0.85rem;">
+                  <option value="Whole Bean">Whole Bean (Optimal Freshness)</option>
+                  <option value="French Press">Coarse (French Press / Cold Brew)</option>
+                  <option value="Pour Over / V60">Medium (V60 / Chemex / Drip)</option>
+                  <option value="Fine Espresso">Fine (Home Espresso / Moka Pot)</option>
+                </select>
+              </div>
+              <div class="item-card-footer">
+                <span class="item-price">$18.50</span>
+                <button class="btn btn-primary btn-sm" onclick="handleShopAdd('sumatra-mandheling-dark', 'grind-shop-sumatra')">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 4: House Blend -->
+          <article class="item-card">
+            <div class="item-card-image">
+              <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=700&q=80" alt="Velvet Crema House Espresso" />
+              <span class="item-badge">Signature Blend</span>
+            </div>
+            <div class="item-card-body">
+              <div class="item-tags">
+                <span class="tag">Brazil &amp; Guatemala</span>
+                <span class="tag">Medium-Dark</span>
+              </div>
+              <h3>Velvet Crema House Espresso</h3>
+              <p>Our flagship espresso formula crafted to produce dense crema, rich mouthfeel, and luscious sweetness with milk.</p>
+              <div style="font-size: 0.85rem; color: var(--c-crema-hover); font-weight:600; margin-bottom: 1rem;">
+                👅 Notes: Dark Chocolate, Toasted Hazelnut, Blackberry
+              </div>
+              <div style="margin-bottom: 1rem;">
+                <label style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--c-text-muted); display: block; margin-bottom: 0.25rem;">Grind Selection:</label>
+                <select class="form-control" id="grind-shop-espresso" style="padding: 0.4rem 0.6rem; font-size: 0.85rem;">
+                  <option value="Whole Bean">Whole Bean (Optimal Freshness)</option>
+                  <option value="Fine Espresso">Fine (Home Espresso / Moka Pot)</option>
+                  <option value="Pour Over / V60">Medium (V60 / Chemex / Drip)</option>
+                  <option value="French Press">Coarse (French Press / Cold Brew)</option>
+                </select>
+              </div>
+              <div class="item-card-footer">
+                <span class="item-price">$17.50</span>
+                <button class="btn btn-primary btn-sm" onclick="handleShopAdd('signature-espresso-blend', 'grind-shop-espresso')">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 5: Brewing Kit -->
+          <article class="item-card">
+            <div class="item-card-image">
+              <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=700&q=80" alt="Hario V60 Ceramic Brewer Set" />
+              <span class="item-badge">Essential Gear</span>
+            </div>
+            <div class="item-card-body">
+              <div class="item-tags">
+                <span class="tag">Hario Japan</span>
+                <span class="tag">Ceramic 02</span>
+              </div>
+              <h3>Hario V60 Ceramic Brewer Set</h3>
+              <p>The gold standard pour-over brewing kit favored by competitive baristas world-wide for pristine flavor clarity and extraction control.</p>
+              <div style="font-size: 0.85rem; color: var(--c-crema-hover); font-weight:600; margin-bottom: 1rem;">
+                📦 Includes: Ceramic Dripper, 600ml Glass Server, 100 Paper Filters
+              </div>
+              <div class="item-card-footer" style="margin-top: auto;">
+                <span class="item-price">$36.00</span>
+                <button class="btn btn-primary btn-sm" onclick="window.cartManager.addItem('pourover-v60-kit')">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Coffee Storage & Freshness Education -->
+    <section class="section section-cream">
+      <div class="container container-narrow text-center">
+        <span class="subheading">Barista Pro Tips</span>
+        <h2 class="heading-lg">How to Keep Your Coffee at Peak Flavor</h2>
+        <div class="grid-3" style="margin-top: 2.5rem; text-align: left;">
+          <div style="background: var(--c-white); padding: 1.75rem; border-radius: var(--radius-md); border: 1px solid var(--c-border);">
+            <h4>1. Oxygen Is The Enemy</h4>
+            <p style="font-size: 0.9rem; color: var(--c-text-muted); margin-top: 0.5rem;">
+              Always reseal the bag tightly or transfer beans to an opaque vacuum canister. Never store beans in the refrigerator where condensation destroys lipids.
+            </p>
+          </div>
+          <div style="background: var(--c-white); padding: 1.75rem; border-radius: var(--radius-md); border: 1px solid var(--c-border);">
+            <h4>2. Grind Just Before Brewing</h4>
+            <p style="font-size: 0.9rem; color: var(--c-text-muted); margin-top: 0.5rem;">
+              Coffee begins losing its delicate volatile aromatics within 15 minutes of being ground. Grinding whole bean fresh unlocks 80% more flavor.
+            </p>
+          </div>
+          <div style="background: var(--c-white); padding: 1.75rem; border-radius: var(--radius-md); border: 1px solid var(--c-border);">
+            <h4>3. Mind The Degassing Window</h4>
+            <p style="font-size: 0.9rem; color: var(--c-text-muted); margin-top: 0.5rem;">
+              Coffee tastes best between day 4 and day 28 post-roast date. The initial degassing allows clean extraction without carbon dioxide channeling.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo" style="color: var(--c-white);">
+            <svg fill="currentColor" viewBox="0 0 24 24" width="30" height="30" aria-hidden="true">
+              <path d="M2 19h18v2H2v-2zm16-7V8h2a3 3 0 0 1 3 3v1a3 3 0 0 1-3 3h-2zm0-2h2a1 1 0 0 0 1-1v-1a1 1 0 0 0-1-1h-2v2zM4 17h12V7H4v10zm-2 0V5h16v2h2a5 5 0 0 1 5 5v1a5 5 0 0 1-5 5h-2v1a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"/>
+            </svg>
+            <span>Bean &amp; Brew</span>
+          </a>
+          <p>
+            An independent artisan coffee roastery and café dedicated to ethical single-origin sourcing, meticulous micro-batch roasting, and welcoming hospitality.
+          </p>
+          <div class="social-links">
+            <a href="#" class="social-btn" aria-label="Instagram">📸</a>
+            <a href="#" class="social-btn" aria-label="Twitter">🐦</a>
+            <a href="#" class="social-btn" aria-label="YouTube">▶️</a>
+            <a href="#" class="social-btn" aria-label="Spotify">🎧</a>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="menu.html">Café Menu</a></li>
+            <li><a href="shop.html">Whole Bean Coffees</a></li>
+            <li><a href="about.html">Our Farm Partners</a></li>
+            <li><a href="reservations.html">Table Reservations</a></li>
+            <li><a href="reservations.html#workshops">Barista Workshops</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Roastery Locations</h4>
+          <ul>
+            <li><strong>Flagship Roastery &amp; Café:</strong></li>
+            <li>248 Artisan Alley, Portland, OR</li>
+            <li style="margin-top: 0.5rem;"><strong>Uptown Garden Espresso:</strong></li>
+            <li>1042 NW Irving Street, Portland, OR</li>
+            <li style="margin-top: 0.5rem;"><a href="contact.html">View Maps &amp; Hours &rarr;</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Café Hours</h4>
+          <ul>
+            <li><strong>Monday – Friday:</strong></li>
+            <li>6:30 AM – 8:00 PM</li>
+            <li style="margin-top: 0.5rem;"><strong>Saturday – Sunday:</strong></li>
+            <li>7:30 AM – 9:00 PM</li>
+            <li style="margin-top: 0.5rem;"><span style="color: var(--c-crema);">Fresh Roasting: Tue &amp; Thu</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Bean &amp; Brew Artisan Coffee Roasters. All rights reserved. Built with pride as a Digital Solutions Consultant showcase.</div>
+        <div style="display:flex; gap: 1.5rem;">
+          <a href="contact.html">Privacy Policy</a>
+          <a href="contact.html">Terms of Service</a>
+          <a href="contact.html">Sustainability Report</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    function handleShopAdd(productId, selectId) {
+      const select = document.getElementById(selectId);
+      const grind = select ? select.value : 'Whole Bean';
+      if (window.cartManager) {
+        window.cartManager.addItem(productId, grind);
+      }
+    }
+  </script>
+</body>
+</html>

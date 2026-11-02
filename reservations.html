@@ -1,0 +1,336 @@
+<!-- =========================================================================
+     ASSIGNMENT QUESTION 1 • FACULTY: DR. V. ARULKUMAR (18875)
+     ROLE: Digital Solutions Consultant | THEME: Artisan Coffee Shop (Bean & Brew)
+     DEVELOPED FOR & FULLY EDITABLE IN NOTEPAD++ (ZERO DEPENDENCY HTML5/CSS3/JS)
+     ========================================================================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Reserve a table at Bean & Brew Roastery Café or book a seat in our weekend coffee cupping and latte art masterclasses." />
+  <title>Table Reservations &amp; Workshops | Bean &amp; Brew</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☕</text></svg>" />
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <aside class="top-bar" aria-label="Announcement & Opening Status">
+    <div id="liveCafeStatus">
+      <span class="status-pill open"><span class="status-dot"></span> Loading café status...</span>
+    </div>
+    <div>
+      🎟️ <strong>Weekend Tasting Flights:</strong> Reservations recommended for Saturday and Sunday morning seatings.
+    </div>
+    <div class="top-bar-contact">
+      <span>📞 (503) 555-0198</span>
+      <span>📍 248 Artisan Alley, Portland</span>
+    </div>
+  </aside>
+
+  <!-- Sticky Site Header -->
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="index.html" class="brand-logo" aria-label="Bean & Brew Home">
+        <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M2 19h18v2H2v-2zm16-7V8h2a3 3 0 0 1 3 3v1a3 3 0 0 1-3 3h-2zm0-2h2a1 1 0 0 0 1-1v-1a1 1 0 0 0-1-1h-2v2zM4 17h12V7H4v10zm-2 0V5h16v2h2a5 5 0 0 1 5 5v1a5 5 0 0 1-5 5h-2v1a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"/>
+        </svg>
+        <span>Bean &amp; Brew</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="menu.html" class="nav-link">Café Menu</a>
+        <a href="about.html" class="nav-link">Our Story &amp; Roastery</a>
+        <a href="reservations.html" class="nav-link active">Tables &amp; Workshops</a>
+        <a href="shop.html" class="nav-link">Coffee Beans</a>
+        <a href="contact.html" class="nav-link">Visit &amp; Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="cart-btn" aria-label="Open Cart Drawer" title="View Cart">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
+          <span class="cart-badge" style="display:none;">0</span>
+        </button>
+        <a href="#booking" class="btn btn-primary btn-sm">Reserve Now</a>
+        <button class="mobile-toggle" aria-label="Toggle Navigation Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Header Hero -->
+    <section class="section" style="background: linear-gradient(rgba(24, 13, 8, 0.72), rgba(44, 24, 16, 0.82)), url('https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1600&q=80') center/cover; color: var(--c-white); padding: 5rem 0; text-align: center;">
+      <div class="container container-narrow">
+        <span class="subheading" style="color: var(--c-crema-light);">Hospitality &amp; Gatherings</span>
+        <h1 class="heading-xl" style="color: var(--c-white); margin-bottom: 0.75rem;">Reserve Your Roastery Sanctuary</h1>
+        <p style="color: #dfd3c8; font-size: 1.15rem; max-width: 650px; margin: 0 auto;">
+          Whether catching up over slow pour-overs in our garden patio or diving deep into barista craft workshops, secure your spot with instant pass generation.
+        </p>
+      </div>
+    </section>
+
+    <!-- Table Booking Form Section -->
+    <section class="section" id="booking">
+      <div class="container container-narrow">
+        <div style="background: var(--c-white); border-radius: var(--radius-lg); padding: 3rem 2.5rem; border: 1px solid var(--c-border); box-shadow: var(--shadow-lg);">
+          <div class="text-center" style="margin-bottom: 2.5rem;">
+            <span class="subheading">Immediate Confirmation</span>
+            <h2 class="heading-md">Book a Roastery Table</h2>
+            <p style="color: var(--c-text-muted); font-size: 0.95rem;">
+              Walk-ins are always welcomed, but reservations guarantee preferred seating zones during our peak morning and weekend hours.
+            </p>
+          </div>
+
+          <form id="tableBookingForm">
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label" for="resName">Full Name *</label>
+                <input type="text" id="resName" class="form-control" placeholder="Maya Reynolds" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="resEmail">Email Address *</label>
+                <input type="email" id="resEmail" class="form-control" placeholder="maya.reynolds@example.com" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="resPhone">Phone Number *</label>
+                <input type="tel" id="resPhone" class="form-control" placeholder="(503) 555-7821" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="resGuests">Party Size *</label>
+                <select id="resGuests" class="form-control" required>
+                  <option value="1 Guest (Solo Coffee Ritual)">1 Guest (Solo Coffee Ritual)</option>
+                  <option value="2 Guests" selected>2 Guests</option>
+                  <option value="3 Guests">3 Guests</option>
+                  <option value="4 Guests">4 Guests</option>
+                  <option value="5-6 Guests">5 - 6 Guests</option>
+                  <option value="Large Party (7+ Guests)">Large Party (7+ Guests)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="resDate">Preferred Date *</label>
+                <input type="date" id="resDate" class="form-control" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="resTime">Preferred Time Slot *</label>
+                <select id="resTime" class="form-control" required>
+                  <option value="8:00 AM">8:00 AM — Morning Roaster Awakening</option>
+                  <option value="9:30 AM">9:30 AM — Breakfast &amp; Croissant Hour</option>
+                  <option value="11:00 AM">11:00 AM — Midday Pour-Over Flight</option>
+                  <option value="1:00 PM">1:00 PM — Post-Lunch Espresso Session</option>
+                  <option value="3:00 PM">3:00 PM — Afternoon Nitro &amp; Pastry</option>
+                  <option value="5:30 PM">5:30 PM — Evening Twilight Brew</option>
+                </select>
+              </div>
+
+              <div class="form-group form-full">
+                <label class="form-label" for="resSeating">Atmosphere / Seating Zone *</label>
+                <select id="resSeating" class="form-control" required>
+                  <option value="Roastery Lounge (Fireside &amp; Leather Chairs)" selected>Roastery Lounge (Fireside &amp; Leather Chairs)</option>
+                  <option value="Sunlit Courtyard Patio (Garden Greenery)">Sunlit Courtyard Patio (Garden Greenery)</option>
+                  <option value="Front Baristas Counter (Watch Pour-Overs Live)">Front Baristas Counter (Watch Pour-Overs Live)</option>
+                  <option value="Quiet Library Alcove (Study &amp; Focus)">Quiet Library Alcove (Study &amp; Focus)</option>
+                </select>
+              </div>
+
+              <div class="form-group form-full">
+                <label class="form-label" for="resNotes">Special Requests or Occasion (Optional)</label>
+                <textarea id="resNotes" class="form-control" placeholder="Celebrating an anniversary, wheelchair accessible seating needed, bringing a quiet dog for the patio..."></textarea>
+              </div>
+            </div>
+
+            <div style="margin-top: 2rem; text-align: center;">
+              <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+                Generate Confirmed Reservation Pass
+              </button>
+              <div style="font-size: 0.8rem; color: var(--c-text-muted); margin-top: 0.75rem;">
+                Free cancellation up to 1 hour before seating • No deposit required
+              </div>
+            </div>
+          </form>
+
+          <!-- Generated Reservation Pass Container -->
+          <div id="reservationPassResult"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Barista & Sensory Workshops -->
+    <section class="section section-cream" id="workshops">
+      <div class="container">
+        <div class="text-center">
+          <span class="subheading">Master The Craft</span>
+          <h2 class="heading-lg">Upcoming Coffee Workshops &amp; Cupping Flights</h2>
+          <p class="lead" style="margin: 0.5rem auto 0;">
+            Immerse yourself in small-group sensory sessions led by our licensed Q-Graders and barista champions.
+          </p>
+        </div>
+
+        <div class="grid-3" style="margin-top: 3.5rem;">
+          <!-- Workshop 1 -->
+          <article class="feature-card" style="display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <div style="position:relative; height: 190px; border-radius: var(--radius-md); overflow:hidden; margin-bottom: 1.25rem;">
+                <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=600&q=80" alt="Sensory Cupping Lab" style="width:100%; height:100%; object-fit:cover;" />
+                <span class="item-badge" style="position:absolute; top: 0.75rem; left: 0.75rem;">Saturday • 10:00 AM</span>
+              </div>
+              <span class="subheading">Sensory Tasting</span>
+              <h3 style="margin-bottom: 0.5rem;">The Art of Sensory Cupping &amp; Terroir</h3>
+              <p style="color: var(--c-text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+                Learn the official Specialty Coffee Association cupping protocol. Slurp, evaluate acidity and fragrance, and score 6 rare single-origin micro-lots from around the world.
+              </p>
+              <div style="font-size: 0.85rem; color: var(--c-text-main); margin-bottom: 1.25rem;">
+                ⏳ <strong>Duration:</strong> 90 Minutes &nbsp;|&nbsp; 👥 <strong>Limit:</strong> 8 Seats
+              </div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--c-border); padding-top: 1rem;">
+              <span style="font-size: 1.4rem; font-weight: 800; font-family: var(--font-serif); color: var(--c-roast);">$45 <span style="font-size: 0.8rem; font-weight: 400; color: var(--c-text-muted);">/ person</span></span>
+              <button class="btn btn-primary btn-sm rsvp-workshop-btn" data-workshop="Sensory Cupping &amp; Terroir" data-date="Next Saturday 10:00 AM" data-price="$45">Reserve Seat</button>
+            </div>
+          </article>
+
+          <!-- Workshop 2 -->
+          <article class="feature-card" style="display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <div style="position:relative; height: 190px; border-radius: var(--radius-md); overflow:hidden; margin-bottom: 1.25rem;">
+                <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=600&q=80" alt="Latte Art Class" style="width:100%; height:100%; object-fit:cover;" />
+                <span class="item-badge" style="position:absolute; top: 0.75rem; left: 0.75rem;">Sunday • 2:00 PM</span>
+              </div>
+              <span class="subheading">Hands-On Barista</span>
+              <h3 style="margin-bottom: 0.5rem;">Latte Art &amp; Microfoam Chemistry</h3>
+              <p style="color: var(--c-text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+                Master steam wand angle, milk protein stretching, silky microfoam texture, and pour stunning hearts, rosettas, and tulips on our commercial La Marzocco machine.
+              </p>
+              <div style="font-size: 0.85rem; color: var(--c-text-main); margin-bottom: 1.25rem;">
+                ⏳ <strong>Duration:</strong> 2 Hours &nbsp;|&nbsp; 👥 <strong>Limit:</strong> 6 Seats
+              </div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--c-border); padding-top: 1rem;">
+              <span style="font-size: 1.4rem; font-weight: 800; font-family: var(--font-serif); color: var(--c-roast);">$60 <span style="font-size: 0.8rem; font-weight: 400; color: var(--c-text-muted);">/ person</span></span>
+              <button class="btn btn-primary btn-sm rsvp-workshop-btn" data-workshop="Latte Art &amp; Microfoam" data-date="Next Sunday 2:00 PM" data-price="$60">Reserve Seat</button>
+            </div>
+          </article>
+
+          <!-- Workshop 3 -->
+          <article class="feature-card" style="display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <div style="position:relative; height: 190px; border-radius: var(--radius-md); overflow:hidden; margin-bottom: 1.25rem;">
+                <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80" alt="Pour Over Brewing Method" style="width:100%; height:100%; object-fit:cover;" />
+                <span class="item-badge" style="position:absolute; top: 0.75rem; left: 0.75rem;">Thursday • 6:00 PM</span>
+              </div>
+              <span class="subheading">Home Brewing</span>
+              <h3 style="margin-bottom: 0.5rem;">Pour-Over Mastery &amp; Water Science</h3>
+              <p style="color: var(--c-text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+                Unlock barista-level cups at home. We break down kettle flow rates, grind distribution, water hardness (magnesium vs calcium), and recipe formulation.
+              </p>
+              <div style="font-size: 0.85rem; color: var(--c-text-main); margin-bottom: 1.25rem;">
+                ⏳ <strong>Duration:</strong> 75 Minutes &nbsp;|&nbsp; 👥 <strong>Limit:</strong> 10 Seats
+              </div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--c-border); padding-top: 1rem;">
+              <span style="font-size: 1.4rem; font-weight: 800; font-family: var(--font-serif); color: var(--c-roast);">$40 <span style="font-size: 0.8rem; font-weight: 400; color: var(--c-text-muted);">/ person</span></span>
+              <button class="btn btn-primary btn-sm rsvp-workshop-btn" data-workshop="Pour-Over Mastery" data-date="Next Thursday 6:00 PM" data-price="$40">Reserve Seat</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Private Gatherings Banner -->
+    <section class="section section-dark">
+      <div class="container container-narrow text-center">
+        <span class="subheading" style="color: var(--c-crema-light);">Private Bookings</span>
+        <h2 style="color: var(--c-white); margin-bottom: 1rem;">Host Your Special Event at Bean &amp; Brew</h2>
+        <p style="color: #dfd3c8; font-size: 1.05rem; line-height: 1.7; margin-bottom: 2rem;">
+          Our sunlit courtyard and warm brick timber café are available for evening buyouts, acoustic musical sessions, book launches, and intimate celebrations. Includes dedicated baristas and tailored coffee mocktail bars.
+        </p>
+        <a href="contact.html?subject=Private%20Event" class="btn btn-primary btn-lg">Inquire About Private Buyouts</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo" style="color: var(--c-white);">
+            <svg fill="currentColor" viewBox="0 0 24 24" width="30" height="30" aria-hidden="true">
+              <path d="M2 19h18v2H2v-2zm16-7V8h2a3 3 0 0 1 3 3v1a3 3 0 0 1-3 3h-2zm0-2h2a1 1 0 0 0 1-1v-1a1 1 0 0 0-1-1h-2v2zM4 17h12V7H4v10zm-2 0V5h16v2h2a5 5 0 0 1 5 5v1a5 5 0 0 1-5 5h-2v1a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"/>
+            </svg>
+            <span>Bean &amp; Brew</span>
+          </a>
+          <p>
+            An independent artisan coffee roastery and café dedicated to ethical single-origin sourcing, meticulous micro-batch roasting, and welcoming hospitality.
+          </p>
+          <div class="social-links">
+            <a href="#" class="social-btn" aria-label="Instagram">📸</a>
+            <a href="#" class="social-btn" aria-label="Twitter">🐦</a>
+            <a href="#" class="social-btn" aria-label="YouTube">▶️</a>
+            <a href="#" class="social-btn" aria-label="Spotify">🎧</a>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="menu.html">Café Menu</a></li>
+            <li><a href="shop.html">Whole Bean Coffees</a></li>
+            <li><a href="about.html">Our Farm Partners</a></li>
+            <li><a href="reservations.html">Table Reservations</a></li>
+            <li><a href="reservations.html#workshops">Barista Workshops</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Roastery Locations</h4>
+          <ul>
+            <li><strong>Flagship Roastery &amp; Café:</strong></li>
+            <li>248 Artisan Alley, Portland, OR</li>
+            <li style="margin-top: 0.5rem;"><strong>Uptown Garden Espresso:</strong></li>
+            <li>1042 NW Irving Street, Portland, OR</li>
+            <li style="margin-top: 0.5rem;"><a href="contact.html">View Maps &amp; Hours &rarr;</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Café Hours</h4>
+          <ul>
+            <li><strong>Monday – Friday:</strong></li>
+            <li>6:30 AM – 8:00 PM</li>
+            <li style="margin-top: 0.5rem;"><strong>Saturday – Sunday:</strong></li>
+            <li>7:30 AM – 9:00 PM</li>
+            <li style="margin-top: 0.5rem;"><span style="color: var(--c-crema);">Fresh Roasting: Tue &amp; Thu</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Bean &amp; Brew Artisan Coffee Roasters. All rights reserved. Built with pride as a Digital Solutions Consultant showcase.</div>
+        <div style="display:flex; gap: 1.5rem;">
+          <a href="contact.html">Privacy Policy</a>
+          <a href="contact.html">Terms of Service</a>
+          <a href="contact.html">Sustainability Report</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/reservations.js"></script>
+</body>
+</html>

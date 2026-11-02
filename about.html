@@ -1,0 +1,347 @@
+<!-- =========================================================================
+     ASSIGNMENT QUESTION 1 • FACULTY: DR. V. ARULKUMAR (18875)
+     ROLE: Digital Solutions Consultant | THEME: Artisan Coffee Shop (Bean & Brew)
+     DEVELOPED FOR & FULLY EDITABLE IN NOTEPAD++ (ZERO DEPENDENCY HTML5/CSS3/JS)
+     ========================================================================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn the origins of Bean & Brew Artisan Coffee Roasters. Discover our sustainable farm partnerships, precision micro-batch roasting process, and passionate craft team." />
+  <title>Our Story &amp; Roastery Process | Bean &amp; Brew</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☕</text></svg>" />
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <aside class="top-bar" aria-label="Announcement & Opening Status">
+    <div id="liveCafeStatus">
+      <span class="status-pill open"><span class="status-dot"></span> Loading café status...</span>
+    </div>
+    <div>
+      🌱 <strong>Ethically Sourced:</strong> 100% of our green coffee is sourced through transparent direct-trade relationships.
+    </div>
+    <div class="top-bar-contact">
+      <span>📞 (503) 555-0198</span>
+      <span>📍 248 Artisan Alley, Portland</span>
+    </div>
+  </aside>
+
+  <!-- Sticky Site Header -->
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="index.html" class="brand-logo" aria-label="Bean & Brew Home">
+        <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M2 19h18v2H2v-2zm16-7V8h2a3 3 0 0 1 3 3v1a3 3 0 0 1-3 3h-2zm0-2h2a1 1 0 0 0 1-1v-1a1 1 0 0 0-1-1h-2v2zM4 17h12V7H4v10zm-2 0V5h16v2h2a5 5 0 0 1 5 5v1a5 5 0 0 1-5 5h-2v1a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"/>
+        </svg>
+        <span>Bean &amp; Brew</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="menu.html" class="nav-link">Café Menu</a>
+        <a href="about.html" class="nav-link active">Our Story &amp; Roastery</a>
+        <a href="reservations.html" class="nav-link">Tables &amp; Workshops</a>
+        <a href="shop.html" class="nav-link">Coffee Beans</a>
+        <a href="contact.html" class="nav-link">Visit &amp; Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="cart-btn" aria-label="Open Cart Drawer" title="View Cart">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
+          <span class="cart-badge" style="display:none;">0</span>
+        </button>
+        <a href="reservations.html" class="btn btn-primary btn-sm">Book a Table</a>
+        <button class="mobile-toggle" aria-label="Toggle Navigation Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- About Hero -->
+    <section class="section" style="background: linear-gradient(rgba(24, 13, 8, 0.75), rgba(44, 24, 16, 0.85)), url('https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1800&q=80') center/cover; color: var(--c-white); padding: 5rem 0;">
+      <div class="container container-narrow text-center">
+        <span class="subheading" style="color: var(--c-crema-light);">Our Philosophy &amp; Mission</span>
+        <h1 class="heading-xl" style="color: var(--c-white); margin-bottom: 1rem;">Honoring the Hands That Cultivate Every Harvest</h1>
+        <p style="color: #f0e6dc; font-size: 1.2rem; line-height: 1.7;">
+          Bean &amp; Brew was founded in 2018 with a singular guiding conviction: that coffee is not a mere commodity, but an artisanal craft connecting high-altitude growers to mindful drinkers across the globe.
+        </p>
+      </div>
+    </section>
+
+    <!-- The Genesis Story Grid -->
+    <section class="section">
+      <div class="container">
+        <div class="grid-2">
+          <div>
+            <span class="subheading">Founded in Portland, Oregon</span>
+            <h2 class="heading-lg">From a 1-Kilo Sample Roaster to a Vibrant Specialty Sanctuary</h2>
+            <p style="color: var(--c-text-muted); margin: 1.25rem 0; font-size: 1rem; line-height: 1.7;">
+              What began inside a drafty garage on a restored cast-iron sample roaster has grown into an internationally celebrated specialty brand. Founders Maya Lin (mechanical engineer turned roastmaster) and Julian Vance (licensed SCA Q-Grader) spent years trekking through the cloud forests of Yirgacheffe and the steep terraces of Huila.
+            </p>
+            <p style="color: var(--c-text-muted); margin-bottom: 1.5rem; font-size: 1rem; line-height: 1.7;">
+              They realized that industrial commercial coffee stripping all individuality from beans was a tragedy. By creating a direct micro-lot supply chain, paying farmers directly without intermediary brokers, and roasting each terroir to highlight its native floral, fruit, or chocolate profile, Bean &amp; Brew was born.
+            </p>
+            <div style="background: var(--c-cream-bg); border-left: 4px solid var(--c-crema); padding: 1.25rem 1.5rem; border-radius: var(--radius-sm); font-style: italic; color: var(--c-roast);">
+              "When you brew coffee roasted with genuine respect for its altitude and harvest, you do not need sugar or masks. You taste the rain, soil, and sunlight of distant volcanic slopes."
+              <div style="margin-top: 0.5rem; font-style: normal; font-weight: 700; font-size: 0.85rem; color: var(--c-crema-hover);">— Maya Lin, Founder &amp; Head Roaster</div>
+            </div>
+          </div>
+          <div>
+            <img src="https://images.unsplash.com/photo-1518832553480-cd0e625ed3e6?auto=format&fit=crop&w=1000&q=80" alt="Master roaster inspecting freshly roasted coffee beans" style="border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); width:100%; height:460px; object-fit:cover;" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The 6-Stage Roastery Journey Timeline -->
+    <section class="section section-cream">
+      <div class="container">
+        <div class="text-center">
+          <span class="subheading">Traceability &amp; Mastery</span>
+          <h2 class="heading-lg">The Farm-to-Cup Journey</h2>
+          <p class="lead" style="margin: 0.5rem auto 0;">
+            Every single bean we roast passes through six rigorous checkpoints before touching your cup.
+          </p>
+        </div>
+
+        <div class="timeline">
+          <!-- Step 1 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-step">Stage 01 • High-Altitude Cultivation</div>
+              <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Shade-Grown Heirloom Varietals</h3>
+              <p style="color: var(--c-text-muted); font-size: 0.95rem;">
+                Grown above 1,700 meters under native canopy trees. The slow atmospheric maturation concentrates sugars, complex organic acids, and nuanced aromatics inside every cherry.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-step">Stage 02 • Selective Hand-Harvest</div>
+              <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Brix-Meter Ripeness Verification</h3>
+              <p style="color: var(--c-text-muted); font-size: 0.95rem;">
+                Pickers harvest exclusively blood-red, fully ripe cherries. Every lot is checked with optical refractometers for 21%+ sugar content before immediate washing.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-step">Stage 03 • Direct-Trade Partnership</div>
+              <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Fair Remuneration &amp; Community Funds</h3>
+              <p style="color: var(--c-text-muted); font-size: 0.95rem;">
+                We bypass commercial export cartels. We guarantee multi-year contracts paying on average 45% above Fair Trade market price directly to farming cooperatives.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-step">Stage 04 • Micro-Batch Thermodynamics</div>
+              <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Precision Fluid-Bed Roasting</h3>
+              <p style="color: var(--c-text-muted); font-size: 0.95rem;">
+                Using our zero-emissions Loring convection roaster, our roast profiles monitor rate of rise (RoR) within 0.1°C per second to prevent smoky carbonization and preserve floral volatiles.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-step">Stage 05 • Sensory Lab Cupping</div>
+              <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Licensed SCA Q-Grader Scoring (86+ Pts)</h3>
+              <p style="color: var(--c-text-muted); font-size: 0.95rem;">
+                Every batch is cupped within 24 hours. Any roast falling below our exacting 86-point threshold is composted and never released to our shelves.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 6 -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-step">Stage 06 • Valved Eco-Packaging</div>
+              <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Oxygen-Purged Compostable Bags</h3>
+              <p style="color: var(--c-text-muted); font-size: 0.95rem;">
+                Sealed in 100% home-compostable Kraft barrier bags with one-way degassing valves to lock in fresh volatile aromas while letting CO2 safely vent.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sustainability Impact Metrics -->
+    <section class="section section-dark">
+      <div class="container text-center">
+        <span class="subheading" style="color: var(--c-crema-light);">Our Environmental Pledge</span>
+        <h2 class="heading-lg" style="color: var(--c-white);">Real Sustainability, Not Greenwashing</h2>
+
+        <div class="grid-4" style="margin-top: 3.5rem;">
+          <div style="background: rgba(255,255,255,0.06); padding: 2rem 1.5rem; border-radius: var(--radius-lg); border: 1px solid rgba(200, 150, 86, 0.3);">
+            <div style="font-size: 2.5rem; color: var(--c-crema); font-weight: 800; font-family: var(--font-serif);">$1.4M+</div>
+            <h4 style="color: var(--c-white); margin: 0.5rem 0 0.3rem;">Direct Farmer Premiums</h4>
+            <p style="font-size: 0.85rem; color: #dfd3c8;">Direct financial surplus paid above commodity index to agrarian families.</p>
+          </div>
+
+          <div style="background: rgba(255,255,255,0.06); padding: 2rem 1.5rem; border-radius: var(--radius-lg); border: 1px solid rgba(200, 150, 86, 0.3);">
+            <div style="font-size: 2.5rem; color: var(--c-crema); font-weight: 800; font-family: var(--font-serif);">100%</div>
+            <h4 style="color: var(--c-white); margin: 0.5rem 0 0.3rem;">Compostable Takeaway</h4>
+            <p style="font-size: 0.85rem; color: #dfd3c8;">Cornstarch-lined cups, plant straws, and water-based inks.</p>
+          </div>
+
+          <div style="background: rgba(255,255,255,0.06); padding: 2rem 1.5rem; border-radius: var(--radius-lg); border: 1px solid rgba(200, 150, 86, 0.3);">
+            <div style="font-size: 2.5rem; color: var(--c-crema); font-weight: 800; font-family: var(--font-serif);">0 lbs</div>
+            <h4 style="color: var(--c-white); margin: 0.5rem 0 0.3rem;">Spent Grounds to Landfill</h4>
+            <p style="font-size: 0.85rem; color: #dfd3c8;">Over 12 tons of nitrogen-rich coffee grounds donated annually to local urban farms.</p>
+          </div>
+
+          <div style="background: rgba(255,255,255,0.06); padding: 2rem 1.5rem; border-radius: var(--radius-lg); border: 1px solid rgba(200, 150, 86, 0.3);">
+            <div style="font-size: 2.5rem; color: var(--c-crema); font-weight: 800; font-family: var(--font-serif);">Wind 100</div>
+            <h4 style="color: var(--c-white); margin: 0.5rem 0 0.3rem;">Renewable Roastery Power</h4>
+            <p style="font-size: 0.85rem; color: #dfd3c8;">Our flagship Portland roastery runs completely on clean Pacific wind energy.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Meet The Roastery & Education Team -->
+    <section class="section">
+      <div class="container text-center">
+        <span class="subheading">Passionate Artisans</span>
+        <h2 class="heading-lg">Meet The People Behind Your Cup</h2>
+
+        <div class="grid-3" style="margin-top: 3.5rem; text-align: left;">
+          <div class="feature-card">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=500&q=80" alt="Maya Lin - Head of Roasting" style="width: 100%; height: 260px; object-fit: cover; border-radius: var(--radius-md); margin-bottom: 1.25rem;" />
+            <span class="subheading">Co-Founder &amp; Master Roaster</span>
+            <h3>Maya Lin</h3>
+            <p style="margin-bottom: 0.8rem;">Former aeronautics engineer with a deep obsession for thermal heat transfer. Maya designs all custom roasting algorithms.</p>
+            <div style="font-size: 0.85rem; color: var(--c-roast); font-weight: 700;">Favorite Brew: Ethiopian Yirgacheffe V60</div>
+          </div>
+
+          <div class="feature-card">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=500&q=80" alt="Julian Vance - Green Coffee Buyer" style="width: 100%; height: 260px; object-fit: cover; border-radius: var(--radius-md); margin-bottom: 1.25rem;" />
+            <span class="subheading">Licensed Q-Grader &amp; Sourcing</span>
+            <h3>Julian Vance</h3>
+            <p style="margin-bottom: 0.8rem;">Spends 4 months every year in Central America and East Africa building direct farm equity and auditing bean density.</p>
+            <div style="font-size: 0.85rem; color: var(--c-roast); font-weight: 700;">Favorite Brew: Colombian Pink Bourbon Espresso</div>
+          </div>
+
+          <div class="feature-card">
+            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=500&q=80" alt="Priya Patel - Director of Education" style="width: 100%; height: 260px; object-fit: cover; border-radius: var(--radius-md); margin-bottom: 1.25rem;" />
+            <span class="subheading">Director of Coffee Education</span>
+            <h3>Priya Patel</h3>
+            <p style="margin-bottom: 0.8rem;">2-time regional latte art champion and lead instructor for our weekly public cupping classes and barista certifications.</p>
+            <div style="font-size: 0.85rem; color: var(--c-roast); font-weight: 700;">Favorite Brew: Smoked Vanilla Cortado</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visit CTA -->
+    <section class="section section-cream" style="text-align: center;">
+      <div class="container container-narrow">
+        <span class="subheading">Join Us in Person</span>
+        <h2 class="heading-lg" style="margin-bottom: 1rem;">Experience the Roasting Magic Firsthand</h2>
+        <p class="lead" style="margin: 0 auto 2rem;">
+          Take a seat right next to the roasters, inhale the fresh aromatics, and chat with our coffee team about this week's micro-lot harvests.
+        </p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="reservations.html" class="btn btn-primary btn-lg">Book a Tasting Table</a>
+          <a href="contact.html" class="btn btn-outline btn-lg">View Roastery Directions</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo" style="color: var(--c-white);">
+            <svg fill="currentColor" viewBox="0 0 24 24" width="30" height="30" aria-hidden="true">
+              <path d="M2 19h18v2H2v-2zm16-7V8h2a3 3 0 0 1 3 3v1a3 3 0 0 1-3 3h-2zm0-2h2a1 1 0 0 0 1-1v-1a1 1 0 0 0-1-1h-2v2zM4 17h12V7H4v10zm-2 0V5h16v2h2a5 5 0 0 1 5 5v1a5 5 0 0 1-5 5h-2v1a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"/>
+            </svg>
+            <span>Bean &amp; Brew</span>
+          </a>
+          <p>
+            An independent artisan coffee roastery and café dedicated to ethical single-origin sourcing, meticulous micro-batch roasting, and welcoming hospitality.
+          </p>
+          <div class="social-links">
+            <a href="#" class="social-btn" aria-label="Instagram">📸</a>
+            <a href="#" class="social-btn" aria-label="Twitter">🐦</a>
+            <a href="#" class="social-btn" aria-label="YouTube">▶️</a>
+            <a href="#" class="social-btn" aria-label="Spotify">🎧</a>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="menu.html">Café Menu</a></li>
+            <li><a href="shop.html">Whole Bean Coffees</a></li>
+            <li><a href="about.html">Our Farm Partners</a></li>
+            <li><a href="reservations.html">Table Reservations</a></li>
+            <li><a href="reservations.html#workshops">Barista Workshops</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Roastery Locations</h4>
+          <ul>
+            <li><strong>Flagship Roastery &amp; Café:</strong></li>
+            <li>248 Artisan Alley, Portland, OR</li>
+            <li style="margin-top: 0.5rem;"><strong>Uptown Garden Espresso:</strong></li>
+            <li>1042 NW Irving Street, Portland, OR</li>
+            <li style="margin-top: 0.5rem;"><a href="contact.html">View Maps &amp; Hours &rarr;</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Café Hours</h4>
+          <ul>
+            <li><strong>Monday – Friday:</strong></li>
+            <li>6:30 AM – 8:00 PM</li>
+            <li style="margin-top: 0.5rem;"><strong>Saturday – Sunday:</strong></li>
+            <li>7:30 AM – 9:00 PM</li>
+            <li style="margin-top: 0.5rem;"><span style="color: var(--c-crema);">Fresh Roasting: Tue &amp; Thu</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Bean &amp; Brew Artisan Coffee Roasters. All rights reserved. Built with pride as a Digital Solutions Consultant showcase.</div>
+        <div style="display:flex; gap: 1.5rem;">
+          <a href="contact.html">Privacy Policy</a>
+          <a href="contact.html">Terms of Service</a>
+          <a href="contact.html">Sustainability Report</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!-- =========================================================================
+     ASSIGNMENT QUESTION 1 • FACULTY: DR. V. ARULKUMAR (18875)
+     ROLE: Digital Solutions Consultant | THEME: Artisan Coffee Shop (Bean & Brew)
+     DEVELOPED FOR & FULLY EDITABLE IN NOTEPAD++ (ZERO DEPENDENCY HTML5/CSS3/JS)
+     ========================================================================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Explore Bean & Brew's complete café and online ordering menu. Single-origin coffees, handcrafted espresso, nitro cold brews, and fresh French pastries." />
+  <title>Artisan Café Menu &amp; Ordering | Bean &amp; Brew</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☕</text></svg>" />
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <aside class="top-bar" aria-label="Announcement & Opening Status">
+    <div id="liveCafeStatus">
+      <span class="status-pill open"><span class="status-dot"></span> Loading café status...</span>
+    </div>
+    <div>
+      ☕ <strong>Fresh Roasting Today:</strong> Ethiopian Yirgacheffe &amp; Colombian Huila Bourbon. Use code <strong>BREW10</strong> for 10% off.
+    </div>
+    <div class="top-bar-contact">
+      <span>📞 (503) 555-0198</span>
+      <span>📍 248 Artisan Alley, Portland</span>
+    </div>
+  </aside>
+
+  <!-- Sticky Site Header -->
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="index.html" class="brand-logo" aria-label="Bean & Brew Home">
+        <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M2 19h18v2H2v-2zm16-7V8h2a3 3 0 0 1 3 3v1a3 3 0 0 1-3 3h-2zm0-2h2a1 1 0 0 0 1-1v-1a1 1 0 0 0-1-1h-2v2zM4 17h12V7H4v10zm-2 0V5h16v2h2a5 5 0 0 1 5 5v1a5 5 0 0 1-5 5h-2v1a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"/>
+        </svg>
+        <span>Bean &amp; Brew</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="menu.html" class="nav-link active">Café Menu</a>
+        <a href="about.html" class="nav-link">Our Story &amp; Roastery</a>
+        <a href="reservations.html" class="nav-link">Tables &amp; Workshops</a>
+        <a href="shop.html" class="nav-link">Coffee Beans</a>
+        <a href="contact.html" class="nav-link">Visit &amp; Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="cart-btn" aria-label="Open Cart Drawer" title="View Cart">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
+          <span class="cart-badge" style="display:none;">0</span>
+        </button>
+        <a href="reservations.html" class="btn btn-primary btn-sm">Book a Table</a>
+        <button class="mobile-toggle" aria-label="Toggle Navigation Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Menu Hero Header -->
+    <section class="section" style="background: linear-gradient(rgba(24, 13, 8, 0.7), rgba(24, 13, 8, 0.8)), url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1600&q=80') center/cover; color: var(--c-white); padding: 4.5rem 0; text-align: center;">
+      <div class="container container-narrow">
+        <span class="subheading" style="color: var(--c-crema-light);">Handcrafted &amp; Farm Fresh</span>
+        <h1 class="heading-xl" style="color: var(--c-white); margin-bottom: 0.75rem;">Our Café &amp; Roastery Menu</h1>
+        <p style="color: #dfd3c8; font-size: 1.15rem; max-width: 620px; margin: 0 auto;">
+          From single-origin pour-overs to slow-fermented croissants and micro-lot whole bean bags, explore our offerings and order directly for café pickup or home delivery.
+        </p>
+      </div>
+    </section>
+
+    <!-- Menu Filter & Search Toolbar -->
+    <section class="section" style="padding-top: 3rem;">
+      <div class="container">
+        <!-- Search bar -->
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="menuSearchInput" class="search-input" placeholder="Search by coffee origin, brew style, tasting note (e.g. peach, oat, dark)..." aria-label="Search menu" />
+        </div>
+
+        <!-- Filter tabs -->
+        <div class="filter-tabs" role="tablist">
+          <button class="filter-btn active" data-category="all" role="tab">All Offerings</button>
+          <button class="filter-btn" data-category="beans" role="tab">Single-Origin Beans</button>
+          <button class="filter-btn" data-category="hot-drinks" role="tab">Espresso &amp; Hot Brews</button>
+          <button class="filter-btn" data-category="cold-drinks" role="tab">Nitro &amp; Cold Brews</button>
+          <button class="filter-btn" data-category="bakery" role="tab">Artisan Bakery</button>
+          <button class="filter-btn" data-category="gear" role="tab">Barista Gear</button>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; color: var(--c-text-muted); font-size: 0.9rem;">
+          <div id="itemsMatchCount">Loading offerings...</div>
+          <div>All beverages crafted with certified organic milk or oat milk.</div>
+        </div>
+
+        <!-- Dynamic Catalog Grid -->
+        <div class="grid-3" id="menuItemsGrid">
+          <!-- Rendered via js/menu.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Sensory Cupping & Temperature Guide -->
+    <section class="section section-cream">
+      <div class="container">
+        <div class="text-center" style="margin-bottom: 3rem;">
+          <span class="subheading">The Science of Extraction</span>
+          <h2 class="heading-lg">Our Barista Brew Calibration Parameters</h2>
+          <p class="lead" style="margin: 0.5rem auto 0;">
+            We calibrate our water TDS (Total Dissolved Solids) to 120-140 ppm and dial in grind microns every morning.
+          </p>
+        </div>
+
+        <div class="grid-4 text-center">
+          <div style="background: var(--c-white); padding: 2rem 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--c-border);">
+            <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">⏱️</div>
+            <h4 style="margin-bottom: 0.3rem;">Hario V60 Pour-Over</h4>
+            <p style="font-size: 0.85rem; color: var(--c-text-muted); margin-bottom: 0.8rem;">Ratio: 1:16.5 | Temp: 93°C / 200°F</p>
+            <div style="font-size: 0.85rem; color: var(--c-mocha);">Yields highest floral clarity and citrus brightness.</div>
+          </div>
+
+          <div style="background: var(--c-white); padding: 2rem 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--c-border);">
+            <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">⚡</div>
+            <h4 style="margin-bottom: 0.3rem;">Nine-Bar Espresso</h4>
+            <p style="font-size: 0.85rem; color: var(--c-text-muted); margin-bottom: 0.8rem;">Ratio: 1:2.1 | Extraction: 27-30s</p>
+            <div style="font-size: 0.85rem; color: var(--c-mocha);">Concentrated crema, intense chocolate body and sweet finish.</div>
+          </div>
+
+          <div style="background: var(--c-white); padding: 2rem 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--c-border);">
+            <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">🧊</div>
+            <h4 style="margin-bottom: 0.3rem;">Nitro Cold Extraction</h4>
+            <p style="font-size: 0.85rem; color: var(--c-text-muted); margin-bottom: 0.8rem;">Steep: 20 Hours | Temp: 4°C / 39°F</p>
+            <div style="font-size: 0.85rem; color: var(--c-mocha);">Velvety nitrogen cascade with ultra-low perceived bitterness.</div>
+          </div>
+
+          <div style="background: var(--c-white); padding: 2rem 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--c-border);">
+            <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">🫖</div>
+            <h4 style="margin-bottom: 0.3rem;">French Press Immersion</h4>
+            <p style="font-size: 0.85rem; color: var(--c-text-muted); margin-bottom: 0.8rem;">Ratio: 1:15 | Steep: 4 Minutes</p>
+            <div style="font-size: 0.85rem; color: var(--c-mocha);">Preserves natural essential coffee oils for maximum rich mouthfeel.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Office & Event Catering Banner -->
+    <section class="section section-dark">
+      <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
+        <div>
+          <span class="subheading" style="color: var(--c-crema-light);">Event &amp; Office Catering</span>
+          <h2 style="color: var(--c-white); margin-bottom: 0.5rem;">Hosting a Gathering or Corporate Session?</h2>
+          <p style="color: #dfd3c8; max-width: 600px;">
+            We provide 96oz travel coffee carafes, assortment pastry boxes, and mobile pop-up espresso bar setups with certified baristas.
+          </p>
+        </div>
+        <div style="display: flex; gap: 1rem;">
+          <a href="contact.html?subject=Catering" class="btn btn-primary btn-lg">Request Catering Quote</a>
+          <a href="reservations.html" class="btn btn-outline-light btn-lg">Reserve Café Space</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo" style="color: var(--c-white);">
+            <svg fill="currentColor" viewBox="0 0 24 24" width="30" height="30" aria-hidden="true">
+              <path d="M2 19h18v2H2v-2zm16-7V8h2a3 3 0 0 1 3 3v1a3 3 0 0 1-3 3h-2zm0-2h2a1 1 0 0 0 1-1v-1a1 1 0 0 0-1-1h-2v2zM4 17h12V7H4v10zm-2 0V5h16v2h2a5 5 0 0 1 5 5v1a5 5 0 0 1-5 5h-2v1a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"/>
+            </svg>
+            <span>Bean &amp; Brew</span>
+          </a>
+          <p>
+            An independent artisan coffee roastery and café dedicated to ethical single-origin sourcing, meticulous micro-batch roasting, and welcoming hospitality.
+          </p>
+          <div class="social-links">
+            <a href="#" class="social-btn" aria-label="Instagram">📸</a>
+            <a href="#" class="social-btn" aria-label="Twitter">🐦</a>
+            <a href="#" class="social-btn" aria-label="YouTube">▶️</a>
+            <a href="#" class="social-btn" aria-label="Spotify">🎧</a>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="menu.html">Café Menu</a></li>
+            <li><a href="shop.html">Whole Bean Coffees</a></li>
+            <li><a href="about.html">Our Farm Partners</a></li>
+            <li><a href="reservations.html">Table Reservations</a></li>
+            <li><a href="reservations.html#workshops">Barista Workshops</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Roastery Locations</h4>
+          <ul>
+            <li><strong>Flagship Roastery &amp; Café:</strong></li>
+            <li>248 Artisan Alley, Portland, OR</li>
+            <li style="margin-top: 0.5rem;"><strong>Uptown Garden Espresso:</strong></li>
+            <li>1042 NW Irving Street, Portland, OR</li>
+            <li style="margin-top: 0.5rem;"><a href="contact.html">View Maps &amp; Hours &rarr;</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Café Hours</h4>
+          <ul>
+            <li><strong>Monday – Friday:</strong></li>
+            <li>6:30 AM – 8:00 PM</li>
+            <li style="margin-top: 0.5rem;"><strong>Saturday – Sunday:</strong></li>
+            <li>7:30 AM – 9:00 PM</li>
+            <li style="margin-top: 0.5rem;"><span style="color: var(--c-crema);">Fresh Roasting: Tue &amp; Thu</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Bean &amp; Brew Artisan Coffee Roasters. All rights reserved. Built with pride as a Digital Solutions Consultant showcase.</div>
+        <div style="display:flex; gap: 1.5rem;">
+          <a href="contact.html">Privacy Policy</a>
+          <a href="contact.html">Terms of Service</a>
+          <a href="contact.html">Sustainability Report</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/menu.js"></script>
+</body>
+</html>
