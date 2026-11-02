@@ -124,7 +124,7 @@ function initEventWorkshops() {
     btn.addEventListener('click', () => {
       const workshopTitle = btn.dataset.workshop || 'Artisan Workshop';
       const workshopDate = btn.dataset.date || 'Upcoming';
-      const price = btn.dataset.price || '$35';
+      const price = btn.dataset.price || '₹999';
 
       const confirmed = confirm(`Would you like to reserve a seat for "${workshopTitle}" on ${workshopDate} (${price}/seat)?\n\nClick OK to confirm your reservation.`);
       if (confirmed) {

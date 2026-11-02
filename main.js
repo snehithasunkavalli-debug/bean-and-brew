@@ -252,7 +252,7 @@ function initCoffeeQuiz() {
               ${rec.description}
             </p>
             <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
-              <span style="font-size: 1.5rem; font-weight: 800; color: var(--c-crema); font-family: var(--font-serif);">$${rec.price.toFixed(2)}</span>
+              <span style="font-size: 1.5rem; font-weight: 800; color: var(--c-crema); font-family: var(--font-serif);">₹${rec.price.toFixed(2)}</span>
               <button class="btn btn-primary" onclick="window.cartManager.addItem('${rec.id}');">
                 Add Match to Cart
               </button>
@@ -326,7 +326,7 @@ function initTastingModal() {
         ${product.description}
       </p>
       <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--c-border); padding-top: 1rem;">
-        <span style="font-size: 1.4rem; font-weight: 800; color: var(--c-roast); font-family: var(--font-serif);">$${product.price.toFixed(2)}</span>
+        <span style="font-size: 1.4rem; font-weight: 800; color: var(--c-roast); font-family: var(--font-serif);">₹${product.price.toFixed(2)}</span>
         <button class="btn btn-primary" onclick="window.cartManager.addItem('${product.id}'); document.getElementById('tastingModalOverlay').classList.remove('open');">
           Add To Basket
         </button>

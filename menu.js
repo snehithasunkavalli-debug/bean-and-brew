@@ -89,7 +89,7 @@ function initMenuCatalog() {
           ` : ''}
 
           <div class="item-card-footer">
-            <span class="item-price">$${item.price.toFixed(2)}</span>
+            <span class="item-price">₹${item.price.toFixed(2)}</span>
             <div style="display:flex; gap:0.5rem;">
               <button class="btn btn-outline btn-sm" onclick="window.openTastingNotes('${item.id}')" title="View Cupping Notes">
                 Notes

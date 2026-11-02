@@ -2,7 +2,7 @@ if (window.__cart_js_loaded) { /* already loaded */ } else {
 window.__cart_js_loaded = true;
 /* ===================================================================
    BEAN & BREW - GLOBAL CART & CHECKOUT ENGINE (cart.js)
-   Cross-page cart persistence, drawer management, and checkout
+   Indian Currency (₹ INR), GST & Cross-Page Persistence
    =================================================================== */
 
 const CART_STORAGE_KEY = 'bean_and_brew_cart';
@@ -10,17 +10,39 @@ const PROMO_STORAGE_KEY = 'bean_and_brew_promo';
 
 const PROMO_CODES = {
   'BREW10': { discountPercent: 10, label: '10% Off Your Order' },
-  'FIRSTSIP': { discountAmount: 5.00, label: '$5 Off Welcome Gift' },
-  'FREESHIP': { freeShipping: true, label: 'Free Shipping Unlocked' }
+  'FIRSTSIP': { discountAmount: 100.00, label: '₹100 Off Welcome Gift' },
+  'FREESHIP': { freeShipping: true, label: 'Free Express Delivery' }
 };
 
-// Global Catalog Data (Accessible across pages)
+// Global Catalog Data (Prices in Indian Rupees ₹)
 window.COFFEE_PRODUCTS = [
+  {
+    id: 'chikmagalur-honey-reserve',
+    name: 'Chikmagalur Red Honey Estate',
+    category: 'beans',
+    price: 490.00,
+    roast: 'Medium Roast',
+    notes: 'Jaggery, Wild Fig, Roasted Almond',
+    origin: 'Baba Budangiri Hills, Karnataka (1,450m)',
+    image: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=700&q=80',
+    description: 'Specialty Indian Arabica processed with natural honey fermentation, imparting luscious jaggery sweetness and balanced chocolate notes.'
+  },
+  {
+    id: 'araku-valley-micro-lot',
+    name: 'Araku Valley Tribal Reserve',
+    category: 'beans',
+    price: 540.00,
+    roast: 'Light-Medium',
+    notes: 'Sweet Lime, Brown Butter, Black Cherry',
+    origin: 'Eastern Ghats, Andhra Pradesh (1,200m)',
+    image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=700&q=80',
+    description: 'Cultivated organically by indigenous tribal farmers in the biodiverse shade of silver oak trees, delivering sparkling citrus acidity.'
+  },
   {
     id: 'ethiopian-yirgacheffe',
     name: 'Ethiopian Yirgacheffe G1',
     category: 'beans',
-    price: 19.50,
+    price: 580.00,
     roast: 'Light Roast',
     notes: 'Jasmine, Bergamot, Peach Nectar',
     origin: 'Gedeo Zone, Ethiopia (2,050m)',
@@ -31,42 +53,20 @@ window.COFFEE_PRODUCTS = [
     id: 'colombian-huila-reserve',
     name: 'Colombian Huila Pink Bourbon',
     category: 'beans',
-    price: 21.00,
+    price: 620.00,
     roast: 'Medium Roast',
-    notes: 'Red Currant, Brown Sugar, Milk Chocolate',
+    notes: 'Red Currant, Cane Sugar, Milk Chocolate',
     origin: 'Huila, Colombia (1,800m)',
-    image: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=700&q=80',
-    description: 'Rare Pink Bourbon varietal offering high sweetness, velvety body, and sweet caramel toffee notes.'
-  },
-  {
-    id: 'sumatra-mandheling-dark',
-    name: 'Sumatra Mandheling Vintage',
-    category: 'beans',
-    price: 18.50,
-    roast: 'Dark Roast',
-    notes: 'Dark Cocoa, Cedarwood, Roasted Walnut',
-    origin: 'Lintong, Sumatra (1,500m)',
     image: 'https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?auto=format&fit=crop&w=700&q=80',
-    description: 'Wet-hulled processing yields heavy syrupy body, earthy cedar nuances, and an ultra-low acidity chocolate richness.'
-  },
-  {
-    id: 'signature-espresso-blend',
-    name: 'Velvet Crema House Espresso',
-    category: 'beans',
-    price: 17.50,
-    roast: 'Espresso Roast',
-    notes: 'Dark Chocolate, Toasted Hazelnut, Blackberry',
-    origin: 'Brazil & Guatemala Blend',
-    image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=700&q=80',
-    description: 'Our flagship espresso formula crafted to produce dense crema, rich mouthfeel, and luscious sweetness with milk.'
+    description: 'Rare Pink Bourbon varietal offering high sweetness, velvety body, and sweet caramel toffee notes.'
   },
   {
     id: 'artisan-caramel-cortado',
     name: 'Smoked Vanilla Cortado',
     category: 'hot-drinks',
-    price: 5.75,
+    price: 240.00,
     roast: 'Beverage',
-    notes: 'Equal parts espresso & textured oat milk, Madagascar vanilla',
+    notes: 'Double ristretto & warm textured oat milk, Madagascar vanilla',
     origin: 'Prepared Fresh in Café',
     image: 'https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=700&q=80',
     description: 'Double ristretto shot cut 1:1 with warm micro-foamed oat milk and infused with house-smoked Madagascar bourbon vanilla syrup.'
@@ -75,10 +75,10 @@ window.COFFEE_PRODUCTS = [
     id: 'nitro-cold-brew',
     name: 'Cascara Nitro Cold Brew',
     category: 'cold-drinks',
-    price: 6.25,
+    price: 260.00,
     roast: 'Cold Beverage',
     notes: 'Guinness-like head, Dark Cherry, Malt',
-    origin: 'Steeped for 20 Hours',
+    origin: 'Steeped for 20 Hours in Bengaluru',
     image: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=700&q=80',
     description: 'Slow-dripped single origin coffee infused with pure nitrogen for an ultra-velvety, creamy texture served ice-cold from tap.'
   },
@@ -86,9 +86,9 @@ window.COFFEE_PRODUCTS = [
     id: 'spanish-honey-latte',
     name: 'Wildflower Honey Lavender Latte',
     category: 'hot-drinks',
-    price: 6.50,
+    price: 270.00,
     roast: 'Beverage',
-    notes: 'Organic Honey, French Lavender, Velvety Foam',
+    notes: 'Organic Forest Honey, French Lavender, Velvety Foam',
     origin: 'Prepared Fresh in Café',
     image: 'https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?auto=format&fit=crop&w=700&q=80',
     description: 'Single-origin espresso harmonized with organic raw wildflower honey, a whisper of organic lavender, and silky steamed milk.'
@@ -97,21 +97,21 @@ window.COFFEE_PRODUCTS = [
     id: 'almond-croissant',
     name: 'Double-Baked Almond Croissant',
     category: 'bakery',
-    price: 4.85,
+    price: 210.00,
     roast: 'Fresh Bakery',
     notes: 'Frangipane almond cream, toasted flakes',
     origin: 'Baked In-House Daily at 5:00 AM',
     image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=700&q=80',
-    description: 'Buttery flaky laminated French pastry soaked with vanilla rum syrup, filled with rich frangipane cream and topped with sliced toasted almonds.'
+    description: 'Flaky French butter laminated pastry soaked with vanilla syrup, filled with rich frangipane almond cream and sliced toasted almonds.'
   },
   {
     id: 'pourover-v60-kit',
     name: 'Hario V60 Ceramic Brewer Set',
     category: 'gear',
-    price: 36.00,
+    price: 2250.00,
     roast: 'Brewing Gear',
     notes: 'Ceramic 02 Dripper, Glass Server, 100 Paper Filters',
-    origin: 'Tokyo, Japan',
+    origin: 'Official Hario Japan',
     image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=700&q=80',
     description: 'The golden standard pour-over brewing kit favored by competitive baristas world-wide for pristine flavor clarity and extraction control.'
   }
@@ -222,7 +222,7 @@ class CartManager {
   calculateTotals() {
     const subtotal = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     let discount = 0;
-    let shipping = subtotal > 0 ? (subtotal >= 40 ? 0 : 4.99) : 0;
+    let shipping = subtotal > 0 ? (subtotal >= 799 ? 0 : 60) : 0; // Free delivery over ₹799
 
     if (this.promoCode && PROMO_CODES[this.promoCode]) {
       const promo = PROMO_CODES[this.promoCode];
@@ -237,7 +237,7 @@ class CartManager {
     }
 
     const discountedSubtotal = Math.max(0, subtotal - discount);
-    const tax = discountedSubtotal * 0.05; // 5% artisanal beverage tax
+    const tax = discountedSubtotal * 0.05; // 5% GST (2.5% CGST + 2.5% SGST)
     const total = discountedSubtotal + tax + shipping;
 
     return {
@@ -260,7 +260,6 @@ class CartManager {
   }
 
   initDOM() {
-    // Inject Drawer Markup if not present
     if (!document.getElementById('cartDrawerOverlay')) {
       const drawerHTML = `
         <div class="cart-drawer-overlay" id="cartDrawerOverlay"></div>
@@ -269,19 +268,15 @@ class CartManager {
             <h3>Your Roastery Basket</h3>
             <button class="close-btn" id="closeCartBtn" aria-label="Close cart">&times;</button>
           </div>
-          <div class="cart-items-list" id="cartItemsList">
-            <!-- Rendered dynamically -->
-          </div>
-          <div class="cart-drawer-footer" id="cartDrawerFooter">
-            <!-- Rendered dynamically -->
-          </div>
+          <div class="cart-items-list" id="cartItemsList"></div>
+          <div class="cart-drawer-footer" id="cartDrawerFooter"></div>
         </aside>
 
         <!-- Checkout Modal -->
         <div class="modal-overlay" id="checkoutModalOverlay">
           <div class="modal-content">
             <div class="modal-header">
-              <h3>Secure Checkout & Tasting Delivery</h3>
+              <h3>Secure Checkout &amp; Fresh Roastery Delivery</h3>
               <button class="close-btn" id="closeCheckoutBtn">&times;</button>
             </div>
             <div class="modal-body">
@@ -289,39 +284,39 @@ class CartManager {
                 <div class="form-grid">
                   <div class="form-group">
                     <label class="form-label" for="custName">Full Name *</label>
-                    <input type="text" id="custName" class="form-control" placeholder="Eleanor Vance" required />
+                    <input type="text" id="custName" class="form-control" placeholder="Ananya Sharma" required />
                   </div>
                   <div class="form-group">
                     <label class="form-label" for="custEmail">Email Address *</label>
-                    <input type="email" id="custEmail" class="form-control" placeholder="eleanor@example.com" required />
+                    <input type="email" id="custEmail" class="form-control" placeholder="ananya.sharma@example.com" required />
                   </div>
                   <div class="form-group form-full">
                     <label class="form-label" for="custAddress">Delivery Address *</label>
-                    <input type="text" id="custAddress" class="form-control" placeholder="742 Evergreen Terrace, Suite 4B" required />
+                    <input type="text" id="custAddress" class="form-control" placeholder="Flat 402, Oakwood Manor, 12th Main, Indiranagar" required />
                   </div>
                   <div class="form-group">
                     <label class="form-label" for="custCity">City *</label>
-                    <input type="text" id="custCity" class="form-control" placeholder="Portland" required />
+                    <input type="text" id="custCity" class="form-control" placeholder="Bengaluru" required />
                   </div>
                   <div class="form-group">
-                    <label class="form-label" for="custZip">Postal / ZIP Code *</label>
-                    <input type="text" id="custZip" class="form-control" placeholder="97201" required />
+                    <label class="form-label" for="custZip">PIN Code *</label>
+                    <input type="text" id="custZip" class="form-control" placeholder="560038" required />
                   </div>
                   <div class="form-group form-full">
                     <label class="form-label" for="orderNotes">Roasting or Barista Instructions (Optional)</label>
-                    <textarea id="orderNotes" class="form-control" placeholder="Leave at porch, call on arrival, extra oat milk, etc."></textarea>
+                    <textarea id="orderNotes" class="form-control" placeholder="Leave with security, extra oat milk, coarse grind for cold brew..."></textarea>
                   </div>
                   <div class="form-group form-full">
-                    <label class="form-label">Payment Preference</label>
-                    <div style="display: flex; gap: 1rem; margin-top: 0.3rem;">
+                    <label class="form-label">Payment Mode</label>
+                    <div style="display: flex; gap: 1rem; margin-top: 0.3rem; flex-wrap: wrap;">
                       <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.9rem; cursor:pointer;">
-                        <input type="radio" name="paymentMethod" value="card" checked /> Credit / Debit Card
+                        <input type="radio" name="paymentMethod" value="upi" checked /> UPI (GPay / PhonePe / Paytm)
                       </label>
                       <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.9rem; cursor:pointer;">
-                        <input type="radio" name="paymentMethod" value="applepay" /> Apple Pay / Google Pay
+                        <input type="radio" name="paymentMethod" value="card" /> Credit / Debit Card
                       </label>
                       <label style="display:flex; align-items:center; gap:0.4rem; font-size:0.9rem; cursor:pointer;">
-                        <input type="radio" name="paymentMethod" value="cod" /> Pay on Pickup / Delivery
+                        <input type="radio" name="paymentMethod" value="cod" /> Cash on Delivery (COD)
                       </label>
                     </div>
                   </div>
@@ -330,7 +325,7 @@ class CartManager {
                 <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--c-border); display:flex; justify-content: space-between; align-items:center;">
                   <div>
                     <span style="font-size: 0.85rem; color: var(--c-text-muted);">Amount Payable:</span>
-                    <h3 id="checkoutModalTotal" style="color: var(--c-roast);">$0.00</h3>
+                    <h3 id="checkoutModalTotal" style="color: var(--c-roast);">₹0.00</h3>
                   </div>
                   <button type="submit" class="btn btn-primary btn-lg">Place Artisan Order</button>
                 </div>
@@ -346,25 +341,25 @@ class CartManager {
               <div style="width: 70px; height: 70px; background: var(--c-success-bg); color: var(--c-success); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 1.5rem;">
                 ✓
               </div>
-              <h2 style="margin-bottom: 0.5rem;">Order Roasted & Confirmed!</h2>
+              <h2 style="margin-bottom: 0.5rem;">Order Roasted &amp; Confirmed!</h2>
               <p style="color: var(--c-text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">
-                Thank you, <strong id="confirmCustomerName">Friend</strong>. Our master roasters are preparing your batch right now.
+                Thank you, <strong id="confirmCustomerName">Coffee Lover</strong>. Our roasters in Bengaluru are dispatching your fresh batch.
               </p>
               <div style="background: var(--c-cream-bg); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1.5rem; text-align: left; font-size: 0.9rem;">
                 <div style="display:flex; justify-content:space-between; margin-bottom:0.4rem;">
-                  <span style="color: var(--c-text-muted);">Order Tracking ID:</span>
-                  <strong id="confirmOrderId" style="font-family: monospace;">BB-93821</strong>
+                  <span style="color: var(--c-text-muted);">Tracking ID:</span>
+                  <strong id="confirmOrderId" style="font-family: monospace;">BB-IN-93821</strong>
                 </div>
                 <div style="display:flex; justify-content:space-between; margin-bottom:0.4rem;">
                   <span style="color: var(--c-text-muted);">Estimated Dispatch:</span>
-                  <strong>Tomorrow, 8:30 AM</strong>
+                  <strong>Tomorrow Morning, 8:30 AM</strong>
                 </div>
                 <div style="display:flex; justify-content:space-between;">
                   <span style="color: var(--c-text-muted);">Total Paid:</span>
-                  <strong id="confirmOrderTotal" style="color: var(--c-roast);">$0.00</strong>
+                  <strong id="confirmOrderTotal" style="color: var(--c-roast);">₹0.00</strong>
                 </div>
               </div>
-              <button class="btn btn-primary" id="continueShoppingBtn" style="width: 100%;">Continue Exploring Bean & Brew</button>
+              <button class="btn btn-primary" id="continueShoppingBtn" style="width: 100%;">Continue Exploring Bean &amp; Brew</button>
             </div>
           </div>
         </div>
@@ -396,7 +391,6 @@ class CartManager {
       });
     }
 
-    // Cart trigger buttons
     document.querySelectorAll('.cart-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -444,7 +438,7 @@ class CartManager {
           <div class="cart-empty-icon">☕</div>
           <h4>Your Cup Is Empty</h4>
           <p style="font-size: 0.9rem; margin-top: 0.4rem; color: var(--c-text-muted);">
-            Explore our ethically roasted whole beans, signature drinks, and barista gear.
+            Explore our single-origin Indian coffees, signature espresso, and barista kits.
           </p>
           <a href="menu.html" class="btn btn-outline btn-sm" style="margin-top: 1.5rem;" onclick="window.cartManager.closeDrawer()">
             Browse Full Menu
@@ -463,7 +457,7 @@ class CartManager {
         <div class="cart-item-info">
           <h4>${item.name}</h4>
           ${item.grind ? `<span class="tag" style="margin-bottom: 0.3rem; display:inline-block;">${item.grind}</span>` : ''}
-          <div class="item-single-price">$${item.price.toFixed(2)} each</div>
+          <div class="item-single-price">₹${item.price.toFixed(2)} each</div>
           <div class="cart-item-qty">
             <button class="qty-btn" onclick="window.cartManager.updateQuantity('${item.cartItemId}', -1)" aria-label="Decrease quantity">-</button>
             <span class="qty-number">${item.quantity}</span>
@@ -471,7 +465,7 @@ class CartManager {
           </div>
         </div>
         <div style="text-align: right;">
-          <div style="font-weight: 700; color: var(--c-roast);">$${(item.price * item.quantity).toFixed(2)}</div>
+          <div style="font-weight: 700; color: var(--c-roast);">₹${(item.price * item.quantity).toFixed(2)}</div>
           <button class="cart-item-remove" onclick="window.cartManager.removeItem('${item.cartItemId}')" title="Remove Item">&times;</button>
         </div>
       </div>
@@ -491,34 +485,33 @@ class CartManager {
 
       <div class="cart-summary-line">
         <span>Subtotal</span>
-        <span>$${totals.subtotal.toFixed(2)}</span>
+        <span>₹${totals.subtotal.toFixed(2)}</span>
       </div>
       ${totals.discount > 0 ? `
         <div class="cart-summary-line" style="color: var(--c-success);">
           <span>Promo Discount</span>
-          <span>-$${totals.discount.toFixed(2)}</span>
+          <span>-₹${totals.discount.toFixed(2)}</span>
         </div>
       ` : ''}
       <div class="cart-summary-line">
-        <span>Artisan Roastery Tax (5%)</span>
-        <span>$${totals.tax.toFixed(2)}</span>
+        <span>Artisan Café GST (5%)</span>
+        <span>₹${totals.tax.toFixed(2)}</span>
       </div>
       <div class="cart-summary-line">
         <span>Eco-Packaging Delivery</span>
-        <span>${totals.shipping === 0 ? '<strong style="color: var(--c-success);">FREE</strong>' : `$${totals.shipping.toFixed(2)}`}</span>
+        <span>${totals.shipping === 0 ? '<strong style="color: var(--c-success);">FREE (Orders over ₹799)</strong>' : `₹${totals.shipping.toFixed(2)}`}</span>
       </div>
 
       <div class="cart-summary-total">
-        <span>Estimated Total</span>
-        <span>$${totals.total.toFixed(2)}</span>
+        <span>Total Payable</span>
+        <span>₹${totals.total.toFixed(2)}</span>
       </div>
 
       <button class="btn btn-primary" id="openCheckoutBtn" style="width: 100%;">
-        Proceed to Checkout ($${totals.total.toFixed(2)})
+        Proceed to Checkout (₹${totals.total.toFixed(2)})
       </button>
     `;
 
-    // Bind footer buttons
     const applyBtn = document.getElementById('applyPromoBtn');
     if (applyBtn) {
       applyBtn.addEventListener('click', () => {
@@ -542,7 +535,7 @@ class CartManager {
     const totals = this.calculateTotals();
 
     if (modal && totalDisplay) {
-      totalDisplay.textContent = `$${totals.total.toFixed(2)}`;
+      totalDisplay.textContent = `₹${totals.total.toFixed(2)}`;
       modal.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
@@ -559,25 +552,21 @@ class CartManager {
   submitOrder(formData) {
     const name = formData.get('custName') || 'Valued Guest';
     const totals = this.calculateTotals();
-    const orderId = 'BB-' + Math.floor(10000 + Math.random() * 90000);
+    const orderId = 'BB-IN-' + Math.floor(10000 + Math.random() * 90000);
 
-    // Close checkout
     this.closeCheckout();
 
-    // Fill confirmation
     document.getElementById('confirmCustomerName').textContent = name;
     document.getElementById('confirmOrderId').textContent = orderId;
-    document.getElementById('confirmOrderTotal').textContent = `$${totals.total.toFixed(2)}`;
+    document.getElementById('confirmOrderTotal').textContent = `₹${totals.total.toFixed(2)}`;
 
-    // Show confirmation modal
     const confirmModal = document.getElementById('orderConfirmOverlay');
     if (confirmModal) {
       confirmModal.classList.add('open');
     }
 
-    // Reset cart
     this.clearCart();
-    this.showToast(`Order #${orderId} placed successfully! Check your inbox for roast updates.`, 'success');
+    this.showToast(`Order #${orderId} placed! Check your SMS and inbox for roast updates.`, 'success');
   }
 
   showToast(message, type = 'info') {
@@ -598,9 +587,7 @@ class CartManager {
   }
 }
 
-// Global initialization
 document.addEventListener('DOMContentLoaded', () => {
   window.cartManager = new CartManager();
 });
-
 }
